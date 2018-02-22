@@ -1,0 +1,37 @@
+<!-- Generated template for the FooterComponent component -->
+<footer class="bg-gray">
+    <section>
+        <!--footer fixe-->
+        <div class="footer-fixe">
+            <span class="icon 01"></span>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="search-footer">
+                        <button class="btn search-footer-button pull-right" (click)="busca()">
+                            <span class="sprites-search-mobile-icon"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 bgRed-size2 text-left"
+                     [ngClass]="configuracao.modo === 'marketplace' ? 'bg-red-light' : 'bg-blue-dark'" >
+                    <div class="line-address--footer" *ngIf="!configuracao.usuario.token" (click)="alteraLocal()">
+                        <strong>{{label}}</strong>
+                        <a class="line-address--edit pull-right">Trocar</a>
+                    </div>
+                    <div class="line-address--footer" *ngIf="configuracao.usuario.token" (click)="meusEnderecos()">
+                        <strong>{{label}}</strong>
+                        <a class="line-address--edit pull-right">Trocar</a>
+                    </div>
+                </div>
+            </div>
+
+            <app-footer-resumo-marketplace *ngIf="configuracao.modo === 'marketplace' && configuracao.logado"></app-footer-resumo-marketplace>
+            <app-footer-resumo-comparacao *ngIf="configuracao.modo !== 'marketplace' && configuracao.logado"></app-footer-resumo-comparacao>
+        </div>
+        <!--/footer fixe-->
+    </section>
+</footer>

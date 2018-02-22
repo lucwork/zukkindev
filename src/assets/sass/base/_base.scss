@@ -1,0 +1,55 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.bg-gray {
+  background-color: $gray;
+    margin-top: 60px;
+}
+
+.bg-transparent {
+  background-color: transparent;
+}
+
+.bg-white {
+    background-color:$white;
+}
+
+.bg-red-light {
+  background-color: $red-light;
+}
+
+.bg-blue-dark {
+    background-color: $blue-ultra-dark;;
+}
+
+.banner-fluid {
+  margin: $space-sm 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.show-app {
+  display: block !important;
+}
+
+.btn:focus {
+  outline: none !important;
+}
+
+input, select {
+  color: $lead !important;
+    font-family: 'Open Sans', sans-serif !important;
+}

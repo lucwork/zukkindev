@@ -1,0 +1,73 @@
+
+
+<ion-content>
+    <!--select-stores-->
+    <div id="select-stores" *ngIf="selecionado">
+        <div class="modal-header">
+            <a href="#" class="close closeModal" aria-hidden="true" (click)="voltar($event)">×</a>
+            <h4>Selecione um dos mercados para continuar comprando:</h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-xs-5">
+                    <div class="content-item">
+                        <div class="item">
+                            <img src="{{selecionado.estabelecimento.pag_est_logo}}" alt="{{selecionado.estabelecimento.pag_est_marca}}" class="img-responsive mCS_img_loaded">
+                            <div class="title">{{selecionado.estabelecimento.pag_est_marca}} - {{selecionado.estabelecimento.pag_est_local_b2c}}</div>
+
+                            <div class="valor" *ngIf="selecionado.lista.length > 0">R$ {{selecionado.total | number:'1.2-2'}}</div>
+                            <div class="valor" *ngIf="selecionado.lista.length == 0">&nbsp;</div>
+
+                            <div class="itens-valor"><span>{{selecionado.lista.length}}</span> de {{this.configuracao.lista.produtos.length}} itens</div>
+                            <div class="frete" *ngIf="selecionado.estabelecimento.frete">
+                                <strong>Frete:</strong> R$ {{selecionado.estabelecimento.frete | number:'1.2-2'}}
+                            </div>
+                            <div class="btn-content">
+                                <div class="btn btn-blue--confirm" (click)="alterarEstabelecimento(selecionado.estabelecimento)">Continuar</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="resumo.length > 0">
+                    <div class="col-xs-1 content-item" (click)="anterior($event)">
+                        <a href="" class="sprites-arrow-product-left" (click)="anterior($event)">prev</a>
+                    </div>
+                    <div class="col-xs-5 content-item">
+                        <ion-slides>
+                            <ion-slide *ngFor="let item of resumo">
+                                <div class="item">
+                                    <img src="{{item.estabelecimento.pag_est_logo}}" alt="{{item.estabelecimento.pag_est_marca}}" class="img-responsive mCS_img_loaded">
+                                    <div class="title">{{item.estabelecimento.pag_est_marca}} - {{item.estabelecimento.pag_est_local_b2c}}</div>
+
+                                    <div class="valor" *ngIf="item.lista.length > 0">R$ {{item.total | number:'1.2-2'}}</div>
+                                    <div class="valor" *ngIf="item.lista.length == 0">&nbsp;</div>
+
+                                    <div class="itens-valor"><span>{{item.lista.length}}</span> de {{this.configuracao.lista.produtos.length}} itens</div>
+                                    <div class="frete" *ngIf="item.estabelecimento.frete">
+                                        <strong>Frete:</strong> R$ {{item.estabelecimento.frete | number:'1.2-2'}}
+                                    </div>
+                                    <div class="btn-content">
+                                        <div class="btn btn-green--transparent" (click)="alterarEstabelecimento(item.estabelecimento)" *ngIf="!item.economia">
+                                            Continuar
+                                        </div>
+                                        <div class="btn btn-green--transparent" (click)="alterarEstabelecimento(item.estabelecimento)" *ngIf="item.economia">
+                                            Troque <br />
+                                            e economize: <br/>
+                                            R$ {{item.economia | number:'1.2-2'}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </ion-slide>
+                        </ion-slides>
+                    </div>
+                    <div class="col-xs-1 content-item" (click)="proximo($event)">
+                        <a href="" class="sprites-arrow-product-right" (click)="proximo($event)">next</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.modal-dialog -->
+    <!--/select-stores-->
+
+</ion-content>

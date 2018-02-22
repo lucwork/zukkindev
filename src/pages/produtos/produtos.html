@@ -1,0 +1,113 @@
+<!--
+  Generated template for the ProdutosPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>   <header>
+        <app-header-marketplace *ngIf="configuracao.modo == 'marketplace'" [navCtrl]="navCtrl"></app-header-marketplace>
+        <app-header-comparacao *ngIf="configuracao.modo != 'marketplace'" [navCtrl]="navCtrl"></app-header-comparacao>
+    </header></ion-header>
+
+
+<ion-content id="produtos">
+ 
+
+    <!--main-->
+    <main class="bg-gray">
+        <!--breadcrumbie-->
+        <ion-row class="breadcrumbie-content">
+            <div class="">
+                <ul>
+                    <li><a href="">Zukkin</a> |</li>
+                    <li *ngIf="parametros.busca.termo"><a href="">Busca</a> |</li>
+                    <li *ngIf="parametros.busca.termo"><a href="" class="active">{{parametros.busca.termo}}</a></li>
+                    <li *ngIf="parametros.nome"><a href="">Categoria</a> |</li>
+                    <li *ngIf="parametros.nome"><a href="" class="active">{{parametros.nome}}</a></li>
+                </ul>
+            </div>
+        </ion-row>
+        <!--/breadcrumbie-->
+
+        <!-- Filter Categorias-->
+        <section class="filter-catalogo">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="filter-catalogo--title">
+                        <h2>Filtrar por:</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <ion-select placeholder="Categoria"
+                                [(ngModel)]="filtroCategoria"
+                                cancelText="Cancelar"
+                                okText="Filtrar"
+                                interface="action-sheet"
+                                class="form-control"
+                                multiple="false"
+                                (ionChange)="busca(1)"
+                    >
+                        <ion-option *ngFor="let cat of categorias" [value]="cat">
+                            {{cat.pag_cat_nome}}
+                        </ion-option>
+                    </ion-select>
+                </div>
+            </div>
+
+        </section>
+        <!--/ Filter Categorias-->
+
+        <!-- Produtos -->
+        <div class="row">
+            <div class=" col-xs-12 ">
+                <div class="content-product--vitrine">
+                    <div class="product-list" *ngIf="produtos.length">
+                        <div class="products-group" *ngFor="let g of ['000','001','010','011','100','101']">
+                            <div *ngFor="let i of ['0','1'];">
+                                <app-produto-box
+                                    *ngIf="produtos[converteIndice(g+i)]"
+                                    [produto]="produtos[converteIndice(g+i)]"
+                                    [navCtrl]="navCtrl">
+                                </app-produto-box>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/produto-->
+
+        <!--pagination-->
+        <div class="row">
+            <div class="col-xs-12">
+                <nav aria-label="Page navigation" class="nav-page">
+                    <ul class="pagination">
+                        <li>
+                            <a href="#" aria-label="Previous" *ngIf="paginacao.current > 1"
+                               (click)="pagina(paginacao.previous)">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li *ngFor="let p of paginacao.pagesInRange">
+                            <a href="#" [ngClass]="{'active': p == paginacao.current}" (click)="pagina(p)">{{p}}</a>
+                        </li>
+                        <li>
+                            <a href="#" aria-label="Next" (click)="pagina(paginacao.pageCount)">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!--/pagination-->
+    </main>
+
+    <app-footer [navCtrl]="navCtrl"></app-footer>
+</ion-content>
+
+<ion-footer>
+    <app-footer-resumo [navCtrl]="navCtrl"></app-footer-resumo>
+</ion-footer>

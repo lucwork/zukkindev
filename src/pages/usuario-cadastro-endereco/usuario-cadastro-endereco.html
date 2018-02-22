@@ -1,0 +1,163 @@
+<!--
+  Generated template for the UsuarioCadastroEnderecoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-content>
+    <div class="modal-header">
+        <a href="#" class="close closeModal" data-dismiss="modal" aria-hidden="true" (click)="voltar()">×</a>
+        <h4 class="modal-title" id="">Cadastre um endereço</h4>
+    </div>
+
+    <form role="form" class="form-inline formulario" validate (submit)="cadastrar()">
+        <div class="row">
+            <div class="form-group col-xs-12" *ngIf="campoNome">
+                <label for="">Nome*</label>
+                <input type="text"
+                       class="form-control"
+                       placeholder="Informe o nome para o endereço"
+                       name="nome"
+                       [(ngModel)]="endereco.pagUsuEndNome"
+                >
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-xs-6">
+                <label for="">CEP*</label>
+                <input type="text"
+                       class="form-control"
+                       id="cep"
+                       placeholder="Digite seu cep"
+                       name="cep"
+                       [(ngModel)]="endereco.pagUsuEndCep"
+                       #cep="ngModel"
+                       (keyup)="pesquisarEnderecoPeloCep(cep.value)"
+                       maxlength="8"
+                       pattern="[0-9]{8}"
+                       required
+                >
+                <div class="text-danger" *ngIf="cep.invalid && (cep.dirty || cep.touched)">
+                    <span *ngIf="cep.errors.pattern">O cep deve ter 8 digitos</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-xs-12">
+                <label for="">Endereço*</label>
+                <input type="text"
+                       class="form-control"
+                       id="endereco"
+                       [placeholder]="logradouroSomenteLeitura ? 'Aguardando cep' : 'Informe o logradouro'"
+                       name="logradouro"
+                       #vLogradouro="ngModel"
+                       [(ngModel)]="logradouro"
+                       [readOnly]="logradouroSomenteLeitura"
+                >
+                <div class="text-danger" *ngIf="vLogradouro.invalid && (vLogradouro.dirty || vLogradouro.touched)">
+                    <span *ngIf="vLogradouro.errors.required">O logradouro é obrigatório</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="">Numero*</label>
+                    <input type="text"
+                           class="form-control"
+                           id="numero"
+                           placeholder=""
+                           required
+                           name="numero"
+                           #vNumero="ngModel"
+                           [(ngModel)]="numero"
+                           required>
+                    <div class="text-danger" *ngIf="vNumero.invalid && (vNumero.dirty || vNumero.touched)">
+                        <span *ngIf="vNumero.errors.required">O número é obrigatório</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="">Complemento</label>
+                    <input type="text"
+                           class="form-control"
+                           id="complemento"
+                           placeholder="Ex:Casa"
+                           name="complemento"
+                           #vComplemento="ngModel"
+                           [(ngModel)]="endereco.pagUsuEndComplemento">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-xs-12">
+                <label for="">Bairro*</label>
+                <input type="text"
+                       class="form-control"
+                       id="bairro"
+                       [placeholder]="bairroSomenteLeitura ? 'Aguardando cep' : 'Informe o bairro'"
+                       name="bairro"
+                       [readOnly]="bairroSomenteLeitura"
+                       required
+                       name="bairro"
+                       [(ngModel)]="bairro"
+                       #vBairro="ngModel"
+                >
+                <div class="text-danger" *ngIf="vBairro.invalid && (vBairro.dirty || vBairro.touched)">
+                    <span *ngIf="vBairro.errors.required">O bairro é obrigatório</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-xs-6">
+                <label for="">Cidade*</label>
+                <input type="text"
+                       class="form-control"
+                       id="cidade"
+                       placeholder="Aguardando cep"
+                       readOnly
+                       required
+                       name="cidade"
+                       [(ngModel)]="cidade"
+                       #vCidade="ngModel"
+                >
+                <div class="text-danger" *ngIf="vCidade.invalid && (vCidade.dirty || vCidade.touched)">
+                    <span *ngIf="vCidade.errors.required">A cidade é obrigatória</span>
+                </div>
+            </div>
+
+            <div class="form-group col-xs-6">
+                <label for="">Estado*</label>
+                <input type="text"
+                       class="form-control"
+                       id="estado"
+                       placeholder="Aguardando cep"
+                       readOnly
+                       required
+                       name="estado"
+                       [(ngModel)]="estado"
+                       #vEstado="ngModel"
+                >
+                <div class="text-danger" *ngIf="vEstado.invalid && (vEstado.dirty || vEstado.touched)">
+                    <span *ngIf="vEstado.errors.required">O estado é obrigatório</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 text-right">
+                <div class="container-btn--confirm">
+                    <button class="btn btn-blue--confirm" type="submit">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</ion-content>

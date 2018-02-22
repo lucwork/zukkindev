@@ -1,0 +1,66 @@
+<!--
+  Generated template for the EstabelecimentoSelecionarPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content>
+<div id="filtrar-estabelecimentos">
+    <div class="modal-content">
+      <div class="modal-header">
+        <a href="#" class="close closeModal" data-dismiss="modal" aria-hidden="true" (click)="fechar()">&times;</a>
+        <h4 class="modal-title" id="">Filtrar por estabelecimentos:</h4>
+
+        <div class="row">
+          <div class="select-range">
+            <div class="col-xs-5">
+              <span class="select-range--text">Selecione o raio de distância:</span>
+            </div>
+            <div class="col-xs-7">
+              <div id="slidecontainer-range">
+                <p class="pull-right"><span id="demo">{{filtro.raio}}</span> Km</p>
+                <input type="range" min="1" max="100" value="50" class="slider-range" id="myRange" [(ngModel)]="filtro.raio" name="raio">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form role="form" class="form-inline formulario">
+          <div class="row">
+            <div class="form-group col-xs-12">
+              <input type="text" class="form-control" id="nome" placeholder="Buscar" [(ngModel)]="filtro.busca" name="busca">
+              <!--<ion-icon name="search"></ion-icon>-->
+            </div>
+          </div>
+        </form>
+
+      </div>
+      <div class="modal-body">
+        <div class="stores-content">
+          <div class="content-vertical">
+
+            <div class="stores-content--item" *ngFor="let estabelecimento of estabelecimentos | filter : filtro.raio : filtro.busca">
+              <div class="stores-content--img">
+                <img src="https://s3-us-west-2.amazonaws.com/pagpouco-atual/{{estabelecimento.pag_est_logo}}" alt="" class="img-responsive">
+              </div>
+              <div class="stores-content--text">
+                <h1>{{estabelecimento.pag_est_marca}} - {{ estabelecimento.pag_est_local_b2c }}</h1>
+                <p>
+                  {{estabelecimento.pag_est_end_logradouro}}<br/>
+                    Distância: {{estabelecimento.distancia | number:'1.2-2'}} Km
+                </p>
+              </div>
+              <div class="stores-content--chose">
+                <a [ngClass]="{'sprites-check-in': estabelecimento.pag_usu_end_est_selecionado, 'sprites-check': !estabelecimento.pag_usu_end_est_selecionado}"
+                   (click)="toogleSelecionado(estabelecimento)">chose
+                  </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+  </ion-content>

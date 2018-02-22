@@ -1,0 +1,4 @@
+<select [(ngModel)]="modo" (change)="alterar(modo)" class="form-control select-modo-de-visualizacao">
+    <option value="marketplace" *ngIf="configuracao.estabelecimentosMarketplace.length > 0">Comprar Online</option>
+    <option value="comparacao" *ngIf="configuracao.estabelecimentosComparacao.length > 0">Comparar Preços</option>
+</select>

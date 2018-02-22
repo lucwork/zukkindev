@@ -1,0 +1,72 @@
+<!--editarLista-->
+<ion-content>
+    <div class="modal-dialog" id="editarLista">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close closeModal" data-dismiss="modal" aria-hidden="true" (click)="closeModal()">&times;</a>
+                <h4 class="modal-title" id="">Selecione a sua lista</h4>
+            </div>
+            <div class="modal-body">
+
+                <div *ngFor="let lista of listas">
+                    <div class="row" *ngIf="!lista.editando">
+                        <div class="col-xs-12">
+                            <div class="link-content modal-body-text" *ngIf="!lista.editando && !lista.pag_lis_status">
+                                <input name="lista" type="radio" (click)="ativar(lista)" /> {{lista.pag_lis_nome}} <span class="modal-body-text span">(<span class="span-item">{{lista.produtos_quantidade}}</span> itens)</span>
+                            </div>
+                            <div class="link-content modal-body-text" *ngIf="!lista.editando && lista.pag_lis_status">
+                                <input type="radio" [disabled]="true" [checked]="true" name="lista" /> {{lista.pag_lis_nome}} <span class="modal-body-text span">(<span class="span-item">{{lista.produtos_quantidade}}</span> itens)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="lista.editando">
+                        <div class="form-group col-xs-7 col-sm-10">
+                            <label for="editar-nome">Editar nome:</label>
+                            <input type="text" class="form-control" id="editar-nome" placeholder="Digite o novo nome"
+                                   [(ngModel)]="lista.pag_lis_nome" name="lista">
+                        </div>
+
+                        <div class="form-group col-xs-5 col-sm-2">
+                            <div class="container-btn--confirm">
+                                <button class="btn btn-blue--confirm " (click)="gravarAlteracao(lista)">Ok</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" *ngIf="!lista.editando">
+                        <div class="col-xs-4">
+                            <div class="link-content">
+                                <a href="#" (click)="editar(lista)" class="link">Editar</a>
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="link-content" *ngIf="!lista.pag_lis_status && listas.length > 1">
+                                <a href="#" (click)="remover(lista)" class="link">Remover</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+    <!--/editarLista-->
+</ion-content>
+<ion-footer>
+    <div class="modal-footer">
+
+        <form role="form" class="form-inline formulario">
+            <div class="row">
+                <div class="form-group col-xs-7">
+                    <input type="text" class="form-control" id="digite-nome" placeholder="Digite um nome"
+                           [(ngModel)]="lista.pag_lis_nome" name="nome">
+                </div>
+                <div class="form-group col-xs-5">
+                    <div class="pull-left">
+                        <button class="btn btn-blue--new" (click)="gravarNovo()">Criar nova</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</ion-footer>

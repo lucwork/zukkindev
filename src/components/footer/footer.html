@@ -1,0 +1,118 @@
+<!--Footer-->
+<footer>
+
+    <section class="row">
+        <div class="col-xs-12  bg-white">
+
+            <!--list-links-->
+            <ul class="list-links">
+                <li *ngIf="!configuracao.usuario.token"><a href="#" (click)="paginaLogin()">Login</a></li>
+                <li *ngIf="configuracao.usuario.token"><a href="#" (click)="logout()">Logout</a></li>
+                <li><a href="#" (click)="abrirLinkExterno('http://blog.zukkin.com')">Blog</a></li>
+                <li><a href="#" (click)="abrirLinkExterno('http://b2b.zukkin.com')">Zukkin B2B</a></li>
+                <li><a href="#" (click)="abrirLinkExterno('http://franquia.zukkin.com')">Seja um franqueado</a></li>
+            </ul>
+            <!--/list-links-->
+
+        </div>
+    </section>
+
+
+    <section class="row">
+        <div class="col-xs-12">
+
+            <!--collapse footer-->
+            <div class="collapse-footer">
+                <button type="button"
+                        class="collapse-btn"
+                        data-toggle="collapse"
+                        data-target="#collapse-footer-1"
+                        (click)="toogleAccordion('institucional')"
+                >
+                    Institucional
+                </button>
+                <div id="collapse-footer-1" *ngIf="accordionInstitucional" class="text-left container-fluid">
+                    <p>
+                        A missão do ZUKKIN é aumentar o poder de compra do consumidor.
+                    </p>
+                    <p>
+                        Coletamos milhares de preços em supermercados, e comparamos todos eles na nossa plataforma,
+                        idealizada para os nossos usuários terem uma experiência extremamente útil, intuitiva e gratuita.
+                    </p>
+                </div>
+
+                <button type="button"
+                        class="collapse-btn"
+                        data-toggle="collapse"
+                        data-target="#collapse-footer-3"
+                        (click)="toogleAccordion('ajudaESuporte')"
+                >
+                    Ajuda e suporte
+                </button>
+                <div id="collapse-footer-3" *ngIf="accordionAjudaESuporte" class="text-left container-fluid">
+                    <p>
+                        Você tem alguma dúvida para utilizar a nossa plataforma? Envie um e-mail para contato@zukkin.com,
+                        ou então nos ligue no (11) 5584.9730
+                    </p>
+                </div>
+            </div>
+            <!--/collapse footer-->
+
+        </div>
+    </section>
+
+    <section class="row">
+        <div class="col-xs-12 bg-red-light">
+
+            <!--alert-info-home-->
+            <div class="alert-info--home">
+                <p>
+                    Proibida a venda de bebidas alcoólicas para
+                    menores de idade, conforme Lei n.° 8069/90, art. 81,
+                    inciso II (Estatuto da Criança e do Adolescente).
+                </p>
+            </div>
+            <!--/alert-info-home-->
+
+        </div>
+    </section>
+
+    <section class="row">
+        <div class="col-xs-12">
+
+            <!--Payfor-->
+            <div class="payfor" [ngClass]="configuracao.usuario.token ? 'aumentar-padding' : ''">
+                <!--<h1>Pague com</h1>-->
+
+                <!--<ul>-->
+                    <!--<li><span class="sprites-visa"></span></li>-->
+                    <!--<li><span class="sprites-master-bandeira"></span></li>-->
+                    <!--<li><span class="sprites-american-express-bandeira"></span></li>-->
+                    <!--<li><span class="sprites-elo-bandeira"></span></li>-->
+                    <!--<li><span class="sprites-dinner-bandeira"></span></li>-->
+                    <!--<li><span class="sprites-boleto"></span></li>-->
+                <!--</ul>-->
+
+                <div class="copyright">
+                    <div class="text-center">
+
+                        <!--no futuro tem que remover esses br's-->
+                        <br />
+                        <!--/no futuro tem que remover esses br's-->
+
+                        <strong>© 2017 ZUKKIN - TODOS OS DIREITOS RESERVADOS </strong>
+                        <!--<p>-->
+                            <!--Zukkin. - CNPJ: 71.676.316/0001-46 - Inscrição Estadual:-->
+                            <!--116.827.781.117 Endereço: Av. Fagundes Filho, 300 Cj 22-->
+                            <!--Vl Monte Alegre - São Paulo/SP-->
+                        <!--</p>-->
+                    </div>
+                </div>
+            </div>
+            <!--/Payfor-->
+
+        </div>
+    </section>
+
+</footer>
+<!--/Footer-->

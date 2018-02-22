@@ -1,0 +1,7 @@
+<button class="btn green-button add-inactive" (click)="adicionar()" *ngIf="!produtoAdicionado" [ngClass]="fullWidth ? 'btn-block' : ''">
+    Adicionar
+</button>
+
+<button class="btn red-button add-active" (click)="remover()" *ngIf="produtoAdicionado" [ngClass]="fullWidth ? 'btn-block' : ''">
+    Remover
+</button>

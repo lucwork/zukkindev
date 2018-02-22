@@ -1,0 +1,95 @@
+<ion-header>
+	  <header>
+        <app-header-marketplace *ngIf="configuracao.modo == 'marketplace'" [navCtrl]="navCtrl"></app-header-marketplace>
+        <app-header-comparacao *ngIf="configuracao.modo != 'marketplace'" [navCtrl]="navCtrl"></app-header-comparacao>
+    </header>
+</ion-header>
+
+
+
+  
+<ion-content>
+
+    <!--main-->
+    <main class="bg-gray">
+
+        <ion-slides autoplay="5000" loop="true" speed="500" pager>
+            <ion-slide>
+                <img src="https://s3-us-west-2.amazonaws.com/pagpoucodev/banners/c7ab1d447c6320b575b896d3962206a8.jpeg"
+                     class="img-responsive" style="width: 100%;"/>
+            </ion-slide>
+
+            <ion-slide>
+                <img src="https://s3-us-west-2.amazonaws.com/pagpoucodev/banners/3ad9dc3ee868cf1003f98a474bea759f.jpeg"
+                     class="img-responsive" style="width: 100%;" (click)="abrirLinkExterno('http://franquia.zukkin.com')"/>
+            </ion-slide>
+
+            <ion-slide>
+                <img src="https://s3-us-west-2.amazonaws.com/pagpoucodev/banners/13d2205f420aa50f868247ab3306ae95.jpeg"
+                     class="img-responsive" style="width: 100%;" (click)="abrirLinkExterno('http://b2b.zukkin.com')"/>
+            </ion-slide>
+        </ion-slides>
+
+        <div style="margin-top: 30px;" *ngIf="loadingProdutos" class="text-center">
+            <ion-spinner></ion-spinner><br />
+            Carregando produtos...
+        </div>
+        <!--product-vitrine-->
+        <app-produto-agrupamento
+            *ngIf="ofertasDaSemana"
+            [imagem]="null"
+            [titulo]="ofertasDaSemana.pag_pro_gru_nome"
+            [produtos]="ofertasDaSemana.pag_produtos_pag_pro"
+            [categoria]="ofertasDaSemana.categoria"
+            [navCtrl]="navCtrl"
+        >
+        </app-produto-agrupamento>
+        <!--/product-vitrine-->
+
+        <app-home-tabs></app-home-tabs>
+
+        <section class="row">
+            <!--banner-fluid-->
+            <div class="banner-fluid">
+                <img src="assets/images/banner/banner-fluid.jpg" alt="" class="img-responsive">
+            </div>
+            <!--/banner-fluid-->
+        </section>
+
+        <div style="margin-top: 30px;" *ngIf="loadingProdutos" class="text-center">
+            <ion-spinner></ion-spinner><br />
+            Carregando produtos...
+        </div>
+        <app-produto-agrupamento
+            *ngFor="let grupo of produtoAgrupamento.slice(0,5)"
+            [imagem]="null"
+            [titulo]="grupo.pag_pro_gru_nome"
+            [produtos]="grupo.pag_produtos_pag_pro"
+            [categoria]="grupo.categoria"
+            [navCtrl]="navCtrl"
+        ></app-produto-agrupamento>
+
+        <div class="container-fluid">
+            <section class="row">
+                <div class="col-xs-12">
+                    <div class="wrapper">
+
+                        <!--logo body-->
+                        <div class="content-logo--body">
+                            <img src="assets/images/static/zukkin-logo-mobile-body.png" alt="">
+                        </div>
+                        <!--/logo-body-->
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <!--/main-->
+
+    <app-footer [navCtrl]="navCtrl"></app-footer>
+</ion-content>
+
+<ion-footer>
+    <app-footer-resumo [navCtrl]="navCtrl"></app-footer-resumo>
+</ion-footer>

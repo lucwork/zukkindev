@@ -1,0 +1,14 @@
+<div class="dropdown">
+    <form action="">
+        <div class="selectdiv">
+            <label>
+                <select class="fake-select form-control" [(ngModel)]="quantidade" name="quantidade" (change)="adicionar()">
+                    <option *ngFor="let valor of valores()" [value]="valor">{{valor}}</option>
+                </select>
+                <div class="sprites-arrow-select-fake"></div>
+            </label>
+
+            <!--<div class="sprites-arrow-select-fake"></div>-->
+        </div>
+    </form>
+</div>

@@ -1,0 +1,189 @@
+.accordion-payment {
+  margin: $space-sm 0;
+  @extend %formulario;
+
+  input {
+    height: $space-md + 10px;
+  }
+
+  h4 {
+    a {
+      color: $lead;
+      font-weight: bold;
+      font-size: $space-sm;
+    }
+  }
+
+  .sprites-card-payment, .sprites-user-payment,.sprites-gps-payment {
+    margin-right: $space-sm;
+  }
+
+  .green-button.add-inactive {
+    max-width: 190px;
+  }
+
+  .btn-blue--new, .green-button.green-button {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: $space-md + 10px;
+  }
+
+  .panel-body {
+    padding: 0;
+    border-bottom: 1px solid $gray-light;
+    padding-bottom: $space-md;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    span {
+      color: $lead-ultra-light;
+      font-size: $space-xs +  $space-xs;
+      font-weight: bold;
+
+      &.delivery {
+        color: $blue-dark;
+        font-size: $space-sm - 3px;
+      }
+    }
+
+    .formulario {
+      margin-top: $space-sm;
+    }
+
+    .content-delivery {
+      border-top: 2px $gray-light solid;
+      padding-top: $space-sm;
+
+      span {
+        color: $lead-ultra-light;
+        font-size: $space-sm - 3px;
+
+
+        &.title {
+          color:$lead;
+          font-size: $space-sm;
+        }
+
+        .price {
+          font-size: $space-sm;
+          margin-left: $space-md;
+        }
+
+        &.type {
+          margin-left: $space-xs + 1px;
+        }
+
+        &.active {
+          color: $lead;
+          font-size: $space-sm - 3px;
+          margin-left: $space-md;
+
+          .price {
+            color: $lead;
+            font-weight: bold;
+            margin-left: $space-md;
+            font-size: $space-sm;
+          }
+        }
+      }
+    }
+  }
+
+  .accordion-payment--content {
+    margin-top: $space-sm;
+
+    &.payment {
+      h1 {
+        font-size: $space-sm - 2px;
+        text-align: center;
+        padding:0 115px;
+        line-height: 20px;
+        color:$lead;
+        font-weight: bold;
+      }
+
+      .store-logo {
+        margin: $space-sm 0;
+      }
+
+      .itens {
+        margin: $space-sm 0;
+      }
+
+      .itens-valor {
+
+
+        .text {
+          color:$gray-brand;
+          font-size: $space-sm;
+          font-weight: normal;
+          text-align: left;
+        }
+
+        .valor {
+          font-size: $space-sm;
+          color:$lead;
+        }
+      }
+
+      .itens-total {
+        margin-top: $space-sm ;
+
+        .text {
+          color:$lead;
+          font-size: $space-sm;
+        }
+
+        .valor{
+          color:$green;
+          font-size: $space-md;
+        }
+      }
+
+      .btn-final {
+        margin: $space-sm 0;
+
+        .btn-blue--new {
+          max-width: 150px;
+          margin: $space-sm 0;
+        }
+      }
+
+      .nav.nav-tabs {
+        margin-left: 0;
+
+        li {
+          width: 33%;
+
+          &.active {
+            border-bottom: 7px solid $red-live;
+            padding-bottom: $space-xs;
+          }
+
+          a {
+            width: 100%;
+            color: $lead;
+            font-weight: bold;
+            height: $space-md + 10px;
+            padding: 0;
+          }
+        }
+      }
+
+      .tab-content {
+        padding: 0;
+
+        select {
+          height: 40px;
+        }
+
+        .content-input {
+          margin-top: -20px;
+        }
+      }
+    }
+  }
+}

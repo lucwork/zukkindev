@@ -1,0 +1,21 @@
+app-footer-resumo {
+    footer {
+        .bg-red-light.bgRed-size2,
+        .bg-blue-dark.bgRed-size2,
+        .bg-red-light,
+        .bg-blue-dark {
+            height: auto;
+            padding: 16px 13px;
+        }
+    }
+}
+
+.comparativo {
+    app-footer-resumo {
+        footer {
+            .you-are {
+                padding: 15px 0;
+            }
+        }
+    }
+}

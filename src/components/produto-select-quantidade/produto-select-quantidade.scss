@@ -1,0 +1,19 @@
+app-produto-select-quantidade {
+    .selectdiv {
+        label {
+            position: relative;
+            width: auto;
+
+            .sprites-arrow-select-fake {
+                position: absolute;
+                right: 4%;
+                top: 45%;
+                left: auto;
+            }
+        }
+
+        select {
+            width: 100%;
+        }
+    }
+}

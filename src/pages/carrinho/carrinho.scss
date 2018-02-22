@@ -1,0 +1,67 @@
+page-carrinho {
+    page-carrinho > ion-footer > div:nth-child(2) > div.col-xs-5 > p.total {
+        color: #70c75c;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .modal-content {
+        -webkit-box-shadow: none;
+        border: none;
+    }
+    #carrinho .modal-content .modal-body .product-list-cart {
+        padding-bottom: 90px;
+    }
+
+    #carrinho .modal-content .modal-body .product-list-cart .content-vertical--wrap .product-list-close {
+        width: 10%;
+    }
+
+    .product-info--content .product-list-prices,
+    .outros-supermercados--content .supermercados-item .row .product-list-prices,
+    .outros-supermercados--content .supermercados-item ion-row .product-list-prices {
+        width: 25%;
+    }
+
+    #carrinho .modal-content .modal-body .product-list-cart .content-vertical--wrap .product-list-prices {
+        width: 30%;
+    }
+
+    .modal-dialog .modal-content .modal-body {
+        padding: 35px 0;
+    }
+
+    #carrinho .modal-content .modal-header .itens-compra--content ul li .carret-red span {
+        color: #ffffff;
+        text-align: center;
+        font-size: 13px;
+        width: 22px !important;
+        margin: auto;
+        display: block;
+        height: 22px !important;
+        padding-top: 2px;
+        left: 0;
+    }
+
+    .modal-footer {
+        .total {
+            color: #70c75c;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .total-itens {
+            font-size: 12px;
+            margin: 0;
+            margin-top: 15px;
+
+            strong {
+                font-weight: 700;
+            }
+
+            .valor-maior {
+                font-size: 15px;
+            }
+        }
+    }
+}

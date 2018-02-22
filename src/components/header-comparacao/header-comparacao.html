@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-xs-2" (click)="openMenu()">
+        <nav id="navside">
+            <a id="open" class="sprites-menu-hamburguer">Open</a>
+        </nav>
+    </div>
+    <div class="col-xs-3">
+        <a href="#" class="sprites-zukkin-logo-mobile" (click)="paginaHome()"></a>
+    </div>
+
+    <div class="col-xs-2">
+        <a href="#" class="icone-mercado" (click)="estabelecimentos()" *ngIf="configuracao.usuario.token"></a>
+    </div>
+    <div class="col-xs-2">
+        <a href="#" class="sprites-list-blue" (click)="modalLista()" *ngIf="configuracao.usuario.token"></a>
+    </div>
+    <div class="pull-right item">
+        <div class="compare-item" (click)="comparacao()" *ngIf="configuracao.usuario.token">Comparar</div>
+        <div class="compare-item" (click)="paginaLogin()" *ngIf="!configuracao.usuario.token">Entrar</div>
+    </div>
+</div>

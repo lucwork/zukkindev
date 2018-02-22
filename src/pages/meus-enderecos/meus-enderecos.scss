@@ -1,0 +1,23 @@
+.endereco-wrapper {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #a5a3a3;
+
+    .endereco-action {
+        margin-top: 15px;
+    }
+}
+
+.endereco-ativo {
+    margin-top: 15px;
+
+    span.flag-ativo {
+        position: absolute;
+        right: 15px;
+        bottom: 1rem;
+        font-size: 1rem;
+
+        color: #a5a3a3;
+        padding: 5px 15px;
+        border: 1px solid #a5a3a3;
+    }
+}

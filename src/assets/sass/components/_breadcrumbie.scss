@@ -1,0 +1,25 @@
+.breadcrumbie-content {
+  background-color: $red-bread;
+  width: 100%;
+  height: $space-md;
+  padding: $space-xs 0;
+  ul {
+    margin: 0 $space-sm;
+    li {
+      display: inline-block;
+      color:$red-opacity;
+      
+      a {
+        color:$red-opacity;
+
+        &:hover {
+          color: white;
+        }
+
+        &.active {
+          color: white;
+        }
+      }
+    }
+  }
+}

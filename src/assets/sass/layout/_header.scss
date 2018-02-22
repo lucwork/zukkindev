@@ -1,0 +1,24 @@
+header{
+  background-color: $red;
+  height: 60px;
+  padding-top: $space-sm + 1px;
+  
+  .carret-cart {
+    background-color: $lead;
+    width: $space-sm + 3px;
+    height: $space-sm + 3px;
+    border-radius: 50%;
+    position: relative;
+    top: -32px;
+    left: $space-sm - 3px;
+
+    span {
+      color:$white;
+      position: relative;
+      top: -2px;
+      left: 2px;
+      font-size: $space-sm - 4px;
+      font-weight: bold;
+    }
+  }
+}

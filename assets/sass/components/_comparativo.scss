@@ -1,0 +1,88 @@
+.comparacao-page {
+
+  .itens {
+    color: $lead;
+  }
+
+  .itens-valor {
+    .text {
+
+    }
+
+    .valor {
+      strong {
+        color:$red-live;
+        font-size: $space-sm + 3px;
+      }
+    }
+  }
+
+  .header {
+    margin: $space-md 0;
+
+    .store-logo {
+      margin: $space-md 0;
+    }
+
+    @extend %itens-cart;
+  }
+
+  .body{
+    h1 {
+      color: $lead;
+      font-size: $space-sm + 10px;
+      font-weight: bold;
+    }
+
+    .content-carousel {
+      .item {
+        .store-logo {
+          width: 15%;
+          margin: $space-md auto;
+
+
+          img {
+            width: auto;
+            margin: 0 auto;
+          }
+        }
+      }
+
+      .owl-prev {
+        background: url('../images/static/png-sprites/arrow-left-box-red.png') no-repeat;
+        width: 43px;
+        height: 40px;
+        display: block;
+        text-indent: -9999px;
+        position: absolute;
+        top:50%;
+      }
+
+      .owl-next{
+        position: absolute;
+        top:50%;
+        right: 0;
+        width: 43px;
+        height: 40px;
+        display: block;
+        text-indent: -9999px;
+        background: url('../images/static/png-sprites/arrow-right-box-red.png') no-repeat;
+      }
+    }
+
+    .change-store {
+      .btn-transparent {
+        width: 100%;
+        border:1px solid $red-live;
+        margin: $space-md 0;
+        color:$red-live;
+
+        .sprites-change-storeRed {
+          margin-right: $space-sm;
+        }
+      }
+    }
+
+    @extend %itens-cart;
+  }
+}

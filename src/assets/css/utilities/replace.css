@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,800i");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,800i");
+.collapse-btn:after {
+  content: "";
+  width: 30px;
+  height: 30px;
+  background: url("assets/images/static/png-sprites/arrow-select-fake.png") no-repeat;
+  float: right;
+  display: inline-block;
+  position: relative;
+  top: 8px; }
+
+.collapse-btn.arrow-up:after {
+  background: url("assets/images/static/png-sprites/arrow-select-fake-up.png") no-repeat; }
+
+.nav.nav-tabs li.active a {
+  background-color: #ffffff;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border: 0;
+  border-bottom: 0;
+  height: 80px;
+  width: 80px; }
+
+.red-button.add-active {
+  background-color: #670909;
+  color: #ffffff;
+  font-family: 'Open Sans', sans-serif;
+  padding: 15px 35px;
+  margin: 15px 0; }
+
+.green-button.add-inactive {
+  background-color: #70c75c;
+  color: #ffffff;
+  font-family: 'Open Sans', sans-serif;
+  padding: 15px 35px;
+  margin: 15px 0; }
+
+.collapse-btn {
+  text-align: left;
+  width: 100%;
+  display: block;
+  background-color: #eceff1;
+  border: 0;
+  color: #455a64;
+  font-weight: bold;
+  font-size: 18px;
+  height: 65px;
+  border-top: 1px solid #cfd8dc;
+  padding: 0 30px; }
+
+.content-pills ol.carousel-indicators {
+  background-color: white;
+  opacity: 0.8;
+  padding: 15px 5px;
+  width: 125px;
+  position: absolute;
+  bottom: -10px;
+  left: auto;
+  right: 0; }
+  .content-pills ol.carousel-indicators li {
+    background-color: #b71c1c;
+    opacity: 0.5; }
+    .content-pills ol.carousel-indicators li.active {
+      background-color: #b71c1c;
+      opacity: 1; }
+
+.mCSB_horizontal.mCSB_inside > .mCSB_container {
+  display: flex !important;
+  min-width: 700px !important;
+  -ms-display: inline-block !important; }
+
+.product-list .mCustomScrollBox {
+  background-color: #eceff1; }
+
+.product-list .mCSB_scrollTools.mCSB_scrollTools_horizontal .mCSB_dragger .mCSB_dragger_bar {
+  background-color: #37474f;
+  margin-top: 7px;
+  height: 5px; }
+
+.product-list .mCSB_scrollTools.mCSB_scrollTools_horizontal .mCSB_draggerRail {
+  height: 5px;
+  background-color: #cfd8dc;
+  opacity: 0.5; }
+
+.nav.nav-tabs {
+  margin-left: 25px;
+  border: 0; }
+  .nav.nav-tabs li {
+    background-color: transparent; }
+
+.tab-content {
+  color: #455a64;
+  font-size: 15px;
+  background-color: #ffffff;
+  padding: 15px;
+  text-align: justify; }
+  .tab-content h1 {
+    font-size: 18px;
+    padding: 15px 0;
+    margin: 0; }
+
+.sprites-arrow-select-fake {
+  position: relative;
+  right: 25px; }

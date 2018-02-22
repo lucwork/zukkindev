@@ -1,0 +1,470 @@
+<ion-header> <header>
+        <app-header-marketplace *ngIf="configuracao.modo == 'marketplace'" [navCtrl]="navCtrl"></app-header-marketplace>
+        <app-header-comparacao *ngIf="configuracao.modo != 'marketplace'" [navCtrl]="navCtrl"></app-header-comparacao>
+    </header></ion-header>
+<ion-content>
+  
+
+    <!--main-->
+    <main class="bg-gray produto-detalhe" *ngIf="produto">
+        <!--product image-->
+        <section class="product-image--content text-center">
+            <img src="{{ produto.pag_pro_imagem_absolute_url }}" alt="">
+        </section>
+        <!--/product images-->
+
+        <div class="container">
+            <!--product info -->
+            <section class="product-info--content">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <p class="brand" *ngIf="produto.pag_marca && produto.pag_marca.pag_mar_nome">
+                            {{ produto.pag_marca.pag_mar_nome }}
+                        </p>
+                    </div>
+                    <div class="col-xs-6">
+                        <p class="cod">Cod.:{{ produto.pag_pro_id }}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p class="product-title">{{ produto.pag_pro_nome }}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="">
+                            <!--<p><span class="sprites-0-stars-mediun"></span><span class="avalie">Avalie</span></p>-->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!--preços comparação-->
+                    <div class="col-xs-12" *ngIf="configuracao.modo !== 'marketplace'">
+                        <div class="product-list-prices">
+                            <div class="prices preco-comparacao">
+                                <span class="price">R$ {{ produto.precos.preco_minimo | number:'1.2-2'}}</span>
+                                até
+                                <span class="price">R$ {{ produto.precos.preco_maximo | number:'1.2-2'}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/preços comparação-->
+
+                    <!--preços marketplace-->
+                    <div class="col-xs-5" *ngIf="configuracao.modo === 'marketplace' && produto.precos.preco_promocao">
+                        <div class="off-content">
+                            <span class="sprites-percent"></span><span>{{ calcularDesconto(produto.precos.preco_promocao, produto.precos.preco_normal) }}% OFF</span>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-7" *ngIf="configuracao.modo === 'marketplace'">
+                        <div class="product-list-prices">
+                            <div class="prices" *ngIf="produto.precos.preco_promocao">
+                                <div class="price-strike">
+                                    R$ {{ produto.precos.preco_normal | number:'1.2-2'}}
+                                </div>
+                                <div class="price">
+                                    R$ {{ produto.precos.preco_promocao | number:'1.2-2'}}
+                                </div>
+                            </div>
+
+                            <div class="prices" *ngIf="!produto.precos.preco_promocao">
+                                <div class="price">
+                                    R$ {{ produto.precos.preco_normal | number:'1.2-2'}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/preços marketplace-->
+                </div>
+
+                <div class="row">
+                    <div class="select-content">
+                        <div class="col-xs-3">
+                            <app-produto-select-quantidade [produto]="produto" [navCtrl]="navCtrl"></app-produto-select-quantidade>
+                        </div>
+
+                        <div class="col-xs-9">
+                            <app-produto-btn-adicionar-remover [produto]="produto" [navCtrl]="navCtrl" [fullWidth]=true></app-produto-btn-adicionar-remover>
+                        </div>
+                    </div>
+                </div>
+
+                <!--<div class="row">-->
+                <!--<div class="col-xs-12">-->
+                <!--<div class="content-description">-->
+                <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+            </section>
+            <!--/product info-->
+        </div>
+
+        <app-produto-alerta-preco *ngIf="configuracao.usuario.token" [produto]="produto"></app-produto-alerta-preco>
+
+        <section class="alert">
+            <div class="row">
+                <div class="col-xs-12 bg-red-light">
+                    <p class="alert-info--home">*Não nos responsabilizamos pelos preços divulgados,
+                        pois pode ocorrer alterações dos preços informados.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!--grafico-->
+        <!--<section class="grafic">-->
+        <!--<h1>Histórico de preços</h1>-->
+        <!--<p>Ver histórico:</p>-->
+        <!--<div id="chart-container">FusionCharts will render here</div>-->
+        <!--</section>-->
+        <!--/grafico-->
+
+        <div style="margin-top: 30px;" *ngIf="!precos" class="text-center">
+            <ion-spinner></ion-spinner>
+            <br/>
+            Carregando preços nos estabelecimentos...
+        </div>
+        <!--OUTROS SUPERMERCADOS-->
+        <section class="outros-supermercados--content" *ngIf="precos && precos.length > 0">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1>Veja os Preços nos Supermercados</h1>
+                </div>
+            </div>
+
+            <div class="supermercados-item">
+                <div class="container" id="accordionsp">
+
+                    <div *ngFor="let item of precos">
+                        <div *ngIf="item.estabelecimento.pag_est_id != configuracao.estabelecimentoBase">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <img src="{{ item.estabelecimento.pag_est_logo_absolute_url }}"
+                                         alt="{{ item.estabelecimento.pag_est_marca }}" class="img-responsive">
+                                </div>
+
+                                <!--modo comparação-->
+                                <div class="col-xs-9" *ngIf="configuracao.modo !== 'marketplace'">
+                                    <p>{{ item.estabelecimento.pag_est_marca }} - {{ item.estabelecimento.pag_est_local_b2c }}</p>
+                                    <div class="product-list-prices">
+                                        <div class="prices">
+                                            <div class="price price-comparacao">
+                                                R$ {{ item.preco_normal | number:'1.2-2'}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/modo comparação-->
+
+                                <!--modo marketplace-->
+                                <div class="col-xs-5" *ngIf="configuracao.modo === 'marketplace'">
+                                    <p>{{ item.estabelecimento.pag_est_marca }} - {{ item.estabelecimento.pag_est_local_b2c }}</p>
+                                    <div class="product-list-prices">
+                                        <div class="prices" *ngIf="item.preco_promocao">
+                                            <div class="price-strike">
+                                                R$ {{ item.preco_normal | number:'1.2-2'}}
+                                            </div>
+                                            <div class="price">
+                                                R$ {{ item.preco_promocao | number:'1.2-2'}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-3 text-right" *ngIf="configuracao.modo === 'marketplace'">
+                                    <div class="change-store">
+                                        <a href="" (click)="mudarEstabelecimentoBase(item.estabelecimento)"><span class="sprites-change-storeWhite"></span> Trocar</a>
+                                    </div>
+                                </div>
+                                <!--/modo marketplace-->
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="update">
+                                        <span>Atualizado em:</span>
+                                        {{ item.preco_data | date:'dd/MM/yyyy' }} |
+                                        <strong>{{ item.preco_data | date:'HH:mm' }}</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!--/OUTROS SUPERMERCADOS-->
+
+        <!--nutricional description-->
+        <section class="nutricional-description--content container-fluid">
+            <div class="" id="accordioninfo">
+                <!--<div class="">-->
+                <!--<div class="panel-heading">-->
+                <!--<h4 class="panel-title">-->
+                <!--<a data-toggle="collapse" data-parent="#accordioninfo" href="#collapseinfoOne">-->
+                <!--<h1>Informação nutricional:</h1>-->
+                <!--</a>-->
+                <!--</h4>-->
+                <!--</div>-->
+                <!--<div id="collapseinfoOne" class="panel-collapse collapse">-->
+                <!--<div class="panel-body">-->
+                <!--<div class="row">-->
+                <!--<div class="table-information">-->
+                <!--<div class="col-xs-7">-->
+                <!--<p class="line-white">Energia Kcal</p>-->
+                <!--</div>-->
+                <!--<div class="col-xs-5">-->
+                <!--<p class="line-white">329kcal</p>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="row">-->
+                <!--<div class="table-information">-->
+                <!--<div class="col-xs-7">-->
+                <!--<p>Energia Kj</p>-->
+                <!--</div>-->
+                <!--<div class="col-xs-5">-->
+                <!--<p>329kj</p>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="row">-->
+                <!--<div class="table-information">-->
+                <!--<div class="col-xs-7">-->
+                <!--<p class="line-white">Energia Kcal</p>-->
+                <!--</div>-->
+                <!--<div class="col-xs-5">-->
+                <!--<p class="line-white">329kcal</p>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+
+                <div class="">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordioninfo"
+                               (click)="accordionOpiniaoConsumidores = !accordionOpiniaoConsumidores">
+                                <h1>Opinião dos consumidores:</h1>
+                            </a>
+                        </h4>
+                    </div>
+
+                    <div id="collapseinfoTwo" class="panel-collapse"
+                         [ngClass]="accordionOpiniaoConsumidores ? '' : 'panel-collapse collapse'">
+                        <div class="avaliationbox-stars">
+                            <!--<div class="row">-->
+                                <!--<div class="col-xs-4">-->
+                                    <!--<div class="sprites-1-stars-small"></div>-->
+                                <!--</div>-->
+                                <!--<div class="col-xs-5">-->
+                                    <!--<div class="progress">-->
+                                        <!--<div class="progress-bar progress-bar-danger" role="progressbar"-->
+                                             <!--aria-valuenow="20"-->
+                                             <!--aria-valuemin="0" aria-valuemax="100" style="width:20%">-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="col-xs-1">-->
+                                    <!--<p>1</p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <!--<div class="row">-->
+                                <!--<div class="col-xs-4">-->
+                                    <!--<div class="sprites-2-stars-small"></div>-->
+                                <!--</div>-->
+                                <!--<div class="col-xs-5">-->
+                                    <!--<div class="progress">-->
+                                        <!--<div class="progress-bar progress-bar-danger" role="progressbar"-->
+                                             <!--aria-valuenow="40"-->
+                                             <!--aria-valuemin="0" aria-valuemax="100" style="width:40%">-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="col-xs-1">-->
+                                    <!--<p>2</p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <!--<div class="row">-->
+                                <!--<div class="col-xs-4">-->
+                                    <!--<div class="sprites-3-stars-small"></div>-->
+                                <!--</div>-->
+                                <!--<div class="col-xs-5">-->
+                                    <!--<div class="progress">-->
+                                        <!--<div class="progress-bar progress-bar-danger" role="progressbar"-->
+                                             <!--aria-valuenow="60"-->
+                                             <!--aria-valuemin="0" aria-valuemax="100" style="width:60%">-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                                <!--<div class="col-xs-1">-->
+                                    <!--<p>3</p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <!--<div class="row">-->
+                                <!--<div class="col-xs-4">-->
+                                    <!--<div class="sprites-4-stars-small"></div>-->
+                                <!--</div>-->
+                                <!--<div class="col-xs-5">-->
+                                    <!--<div class="progress">-->
+                                        <!--<div class="progress-bar progress-bar-danger" role="progressbar"-->
+                                             <!--aria-valuenow="80"-->
+                                             <!--aria-valuemin="0" aria-valuemax="100" style="width:80%">-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="col-xs-1">-->
+                                    <!--<p>4</p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <!--<div class="row">-->
+                                <!--<div class="col-xs-4">-->
+                                    <!--<div class="sprites-5-stars-small"></div>-->
+                                <!--</div>-->
+                                <!--<div class="col-xs-5">-->
+                                    <!--<div class="progress">-->
+                                        <!--<div class="progress-bar progress-bar-danger" role="progressbar"-->
+                                             <!--aria-valuenow="100"-->
+                                             <!--aria-valuemin="0" aria-valuemax="100" style="width:100%">-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="col-xs-1">-->
+                                    <!--<p>5</p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <!--<div class="row">-->
+                                <!--<div class="col-xs-12">-->
+                                    <!--<div class="product-avaliations-box">-->
+                                        <!--<p>Produto maravilhoso.</p>-->
+                                        <!--<p class="sprites-5-stars-large"></p>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h1>O que achou do produto?</h1>
+                                </div>
+
+                                <!--<div class="col-xs-12">-->
+                                    <!--<div class="sprites-0-stars-extra-large"></div>-->
+                                <!--</div>-->
+                                <div class="col-xs-12">
+                                    <label><input type="radio" name="nota" (click)="avaliacao.pagAvaNota = 1" /> 1</label>
+                                    <label><input type="radio" name="nota" (click)="avaliacao.pagAvaNota = 2" /> 2</label>
+                                    <label><input type="radio" name="nota" (click)="avaliacao.pagAvaNota = 3" /> 3</label>
+                                    <label><input type="radio" name="nota" (click)="avaliacao.pagAvaNota = 4" /> 4</label>
+                                    <label><input type="radio" name="nota" (click)="avaliacao.pagAvaNota = 5" /> 5</label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12" style="width: 100%;">
+                                    <form action="" class="formulario formulario-avaliation">
+                                        <div class="form-group">
+                                            <textarea type="text" class="form-control"
+                                                      id="area"
+                                                      placeholder="Digite aqui o que achou do produto"
+                                                      name="avaliacaoMensagem"
+                                                      [(ngModel)]="avaliacao.pagAvaMensagem"
+                                            ></textarea>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="text" class="form-control"
+                                                   id="nome"
+                                                   placeholder="Digite aqui seu nome"
+                                                   name="nome"
+                                                   [(ngModel)]="avaliacao.pagAvaNome"
+                                            >
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" id="email"
+                                                   placeholder="Digite aqui seu email"
+                                                   name="email"
+                                                   [(ngModel)]="avaliacao.pagAvaEmail"
+                                            >
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="pull-right">
+                                                <button class="btn btn-red--comparar" (click)="enviarAvaliacao($event)" *ngIf="!avaliacaoRequisicao">
+                                                    Publicar opinião
+                                                </button>
+                                                <button class="btn btn-red--comparar" *ngIf="avaliacaoRequisicao" disabled>
+                                                    Processando...
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--nutricional description-->
+
+
+        <div style="margin-top: 30px;" *ngIf="!semelhantes" class="text-center">
+            <ion-spinner></ion-spinner>
+            <br/>
+            Carregando produtos semelhantes...
+        </div>
+
+        <!--compre também-->
+        <app-produto-agrupamento
+            *ngIf="semelhantes && semelhantes.length > 0"
+            [imagem]="null"
+            [titulo]="'Você pode gostar também:'"
+            [slug]="null"
+            [produtos]="semelhantes"
+            [navCtrl]="navCtrl"
+        >
+        </app-produto-agrupamento>
+        <!--/compre também-->
+
+        <div class="container-fluid">
+            <section class="row">
+                <div class="col-xs-12">
+                    <div class="wrapper">
+
+                        <!--logo body-->
+                        <div class="content-logo--body">
+                            <img src="../assets/images/static/zukkin-logo-mobile-body.png" alt="">
+                        </div>
+                        <!--/logo-body-->
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <!--/main-->
+
+    <app-footer [navCtrl]="navCtrl"></app-footer>
+</ion-content>
+
+<ion-footer>
+    <app-footer-resumo [navCtrl]="navCtrl"></app-footer-resumo>
+</ion-footer>

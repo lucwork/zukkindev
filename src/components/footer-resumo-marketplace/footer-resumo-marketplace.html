@@ -1,0 +1,18 @@
+<div class="you-are bg-white">
+    <div class="row">
+        <div class="col-xs-5 you-are--text">
+            <p>Você está comprando em:</p>
+        </div>
+        <div class="col-xs-7 you-are--store" (click)="mudarEstabelecimento($event)">
+            <div class="content-left estabelecimento-selecionado" *ngIf="estabelecimento">
+                <img *ngIf="estabelecimento" src="{{ estabelecimento.pag_est_logo_absolute_url }}" alt="{{ estabelecimento.label }}" class="store">
+                {{estabelecimento.pag_est_marca}}<br />
+                <span class="resumo-footer-local">{{estabelecimento.pag_est_local_b2c}}</span>
+            </div>
+
+            <div class="content-right">
+                <a href="#" class="change-store sprites-change-store"></a>
+            </div>
+        </div>
+    </div>
+</div>

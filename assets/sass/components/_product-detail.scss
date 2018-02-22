@@ -1,0 +1,272 @@
+.product-image--content {
+  background-color: $white;
+  padding: $space-sm 0;
+
+  .owl-carousel {
+    .item {
+      img {
+        margin: 0 auto;
+        width: auto;
+      }
+    }
+
+    .owl-nav {
+      .owl-next {
+        background: url('../images/static/png-sprites/arrow-product-right.png') no-repeat;
+        text-indent: -9999px;
+        position: absolute;
+        top: 50%;
+        right: 5%;
+        width: $space-sm + 2px;
+        width: $space-sm + $space-xs;
+      }
+
+      .owl-prev {
+        background: url('../images/static/png-sprites/arrow-product-left.png') no-repeat;
+        position: absolute;
+        text-indent: -9999px;
+        top: 50%;
+        left: 5%;
+        width: $space-sm + 2px;
+        width: $space-sm + $space-xs;
+      }
+    }
+
+    img {
+      margin: 0 auto;
+      width: auto;
+    }
+  }
+}
+
+.product-info--content {
+  margin-top: $space-sm;
+  .brand {
+    color: $lead;
+    font-size: $space-sm - 2px;
+  }
+
+  .cod {
+    color: $lead;
+    font-size: $space-sm - 3px;
+  }
+
+  .product-title {
+    color:$blue-title;
+    font-weight: bold;
+    font-size: $space-sm +4px;
+  }
+
+  .avalie {
+    margin-left: $space-sm;
+  }
+
+  .off-content {
+    background-color: $green-dark;
+    padding: $space-xs;
+    text-align: center;
+
+    span {
+      color: $white;
+      font-weight: bold;
+      font-size: $space-sm;
+      vertical-align: middle;
+    }
+
+    .sprites-percent {
+      float: left;
+    }
+  }
+
+  .select-content {
+    margin: $space-sm 0;
+  }
+
+  @extend %prices;
+
+  @extend %selectDiv;
+
+  .sprites-arrow-select-fake {
+    right: -15px;
+    top: -42px;
+  }
+
+  .green-button.add-inactive {
+    margin: 0;
+    width: 100%;
+  }
+
+  .content-description {
+    p {
+      color: $lead;
+      font-size: $space-sm - 3px;
+    }
+
+    border-bottom: 1px solid $gray-light;
+    padding-bottom: $space-sm;
+  }
+}
+
+.achei-caro--content{
+  margin:  $space-md 0 0 0;
+  border-bottom: 1px solid $gray-light;
+
+  .achei-caro {
+    h1 {
+      color: $blue-dark;
+      font-size: $space-sm + 2px;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    p {
+      color: $blue-dark;
+      font-size: $space-xs + 7px;
+      font-weight: bold;
+      margin: 0 0 $space-sm;
+    }
+  }
+
+  .red-button.add-active {
+    margin: 0;
+    padding: 6px 35px;
+  }
+
+   .form-inline {
+     margin-bottom: $space-lg + $space-sm;
+   }
+}
+
+.outros-supermercados--content{
+    border-bottom: 1px solid $gray-light;
+
+  h1 {
+    font-size: $space-sm + $space-xs;
+    font-weight: bold;
+    color: $blue-dark;
+  }
+
+  a {
+    color: $blue-dark;
+  }
+
+  .supermercados-item {
+    margin: $space-md 0;
+    .row  {
+      margin-top: $space-sm + 10px;
+      margin-bottom: $space-sm + 10px;
+
+      @extend %prices;
+
+      .price {
+        font-size: $space-sm + $space-xs;
+      }
+
+      .change-store {
+        background-color: $red-live;
+        height: $space-lg + 10px;
+        width: $space-lg + 10px;
+        border-radius: $space-xs;
+        text-align: center;
+        padding: $space-xs +  $space-xs;
+        font-size: $space-xs + 7px;
+
+        a {
+          color: $white;
+        }
+
+        &.transparent {
+          background-color: transparent;
+           border: 1px solid rgba(255, 42, 40, .5);
+
+          a {
+            color: $red-live;
+            opacity: 0.3;
+          }
+        }
+      }
+    }
+  }
+}
+
+.nutricional-description--content {
+  border-bottom: 1px solid $gray-light;
+  padding-bottom: $space-sm;
+
+  h1 {
+    color: $blue-dark;
+    font-size: $space-md - 10px;
+    font-weight: bold;
+  }
+}
+
+.table-information {
+  p {
+    padding: $space-xs;
+    color: $blue-dark;
+
+    &.line-white {
+      background-color: $white;
+      padding: $space-sm - $space-xs;
+    }
+  }
+}
+
+.avaliationbox-content {
+  h1 {
+    color: $blue-dark;
+    font-size: $space-md - 10px;
+    font-weight: bold;
+  }
+
+  .avaliationbox-stars {
+    margin: $space-sm 0;
+
+    .row {
+      .progress {
+        border-radius: 0;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .product-avaliations-box {
+    border: 1px solid $gray-light;
+    border-radius: $space-xs;
+    padding: $space-sm;
+  }
+
+  .formulario-avaliation {
+    margin: $space-sm 0;
+    border-bottom: 1px solid $gray-light;
+    padding-bottom: $space-sm + $space-xs;
+
+    @extend %formulario;
+
+    textarea{
+      min-height: 125px;
+    }
+
+    input {
+      height: $space-lg;
+    }
+
+    .btn-red--comparar {
+      background-color: $red-live;
+
+      &:before{
+        content: none;
+      }
+    }
+  }
+}
+
+.compre-tambem--content {
+  h1 {
+    color: $blue-dark;
+    font-size: $space-md - 10px;
+    font-weight: bold;
+    margin: 0;
+    margin: $space-sm 0 $space-md;
+  }
+}

@@ -1,0 +1,54 @@
+<ion-content id="input-cep">
+    <ion-row class="modal-header">
+        <ion-col col-12 text-center>
+            <h4>Olá, Bem vindo ao <br/>
+                <strong>Zukkin,</strong><br/>
+                seu comparador de preços online.</h4>
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col col-12 text-center>
+            <h4>Para continuar,<br/> poderia nos informar o seu cep?</h4>
+            <form role="form" class="form-inline formulari">
+                <ion-row>
+                    <ion-col col-8>
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Digite seu cep"
+                               #cep
+                               [textMask]="{mask: mascara.cep}">
+                        <!--<span class="pull-right"><a href="">Não sei meu CEP</a></span>-->
+                    </ion-col>
+                    <ion-col col-4>
+                        <button class="btn btn-red--light btn-block" (click)="pesquisarCep(cep.value)">Continuar</button>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row>
+                    <ion-col col-12 text-center>
+                        ou selecione uma das cidades
+                    </ion-col>
+                </ion-row>
+
+                <ion-row>
+                    <ion-col col-12>
+                        <ion-select placeholder="Escolha sua cidade"
+                                    #cidade name="cidade"
+                                    interface="popover"
+                                    [(ngModel)]="cidadeEscolhida"
+                                    [selectOptions]="selectOptions"
+                                    (ionChange)="pesquisarCidade(cidade.value)"
+                                    cancelText="Cancelar"
+                                    class="form-control"
+                        >
+                            <ion-option *ngFor="let cidade of cidades" [value]="cidade">
+                                {{cidade.pag_cid_nome}}
+                            </ion-option>
+                        </ion-select>
+                    </ion-col>
+                </ion-row>
+            </form>
+        </ion-col>
+    </ion-row>
+</ion-content>

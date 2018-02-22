@@ -1,0 +1,90 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+.col-xs-1 {
+    width: 8.2%;
+}
+.col-xs-2 {
+    width: 16.6%;
+}
+.col-xs-3 {
+    width: 24.9%;
+}
+.col-xs-5 {
+    width: 41.5%;
+}
+.col-xs-6 {
+    width: 49.8%;
+}
+.col-xs-7 {
+    width: 58.2%;
+}
+.col-xs-9 {
+    width: 74.9%;
+}
+.col-xs-10 {
+    width: 83.2%;
+}
+
+ion-select {
+    position: relative;
+    max-width: 100% !important;
+    padding-bottom: 10px !important;
+    text-align: left !important;
+    height: 41px !important;
+}
+
+.select-md {
+    padding: 13px 16px;
+
+    .select-icon {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        left: auto;
+        height: auto;
+    }
+
+    .select-placeholder.select-text {
+        position: absolute;
+        top: 25%;
+        left: 10px !important;
+    }
+
+}
+
+.select-ios {
+    padding: 11px 8px 11px 22px;
+}
+.alert-wrapper {
+    min-width: 40px;//what ever you like
+ }
+ .alert-radio-label {
+    white-space: normal!important;
+ }
+
+$popover-ios-width : 100%;
+header {
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+}
+
+.modal-dialog .modal-content .modal-body .modal-body-text
+{
+    margin-top: 10px;
+}

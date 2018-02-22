@@ -1,0 +1,8 @@
+{
+  "name": "zukkinApp",
+  "app_id": "c06960e5",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

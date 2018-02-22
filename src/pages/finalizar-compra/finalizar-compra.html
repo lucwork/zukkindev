@@ -1,0 +1,528 @@
+<ion-header> <header>
+        <app-header-marketplace *ngIf="configuracao.modo == 'marketplace'" [navCtrl]="navCtrl"></app-header-marketplace>
+        <app-header-comparacao *ngIf="configuracao.modo != 'marketplace'" [navCtrl]="navCtrl"></app-header-comparacao>
+    </header>
+</ion-header>
+<ion-content>
+   
+    <!--main-->
+    <main style="margin-top: 60px;">
+        <!--breadcrumbie-->
+        <section class="breadcrumbie-content">
+            <div class="">
+                <ul>
+                    <li><a href="">Zukkin</a> |</li>
+                    <li><a href="" class="active">Checkout</a> </li>
+                </ul>
+            </div>
+        </section>
+        <!--/breadcrumbie-->
+
+        <!-- Accordion pagamento-->
+        <section class="accordion-payment">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="" id="accordion-payment" role="tablist" aria-multiselectable="true">
+                        <!--seção dados pessoais-->
+                        <div class="accordion-payment--content">
+                            <div class="" role="tab" id="pay-01">
+                                <h4 class="">
+                                    <a role="button" data-toggle="collapse"
+                                       data-parent="#accordion-payment" href="#collapse-01"
+                                       aria-expanded="true" aria-controls="collapseOne"
+                                       class="">
+                                        <span class="sprites-user-payment"></span>1. Dados pessoais
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse-01" class="panel-collapse" role="tabpanel" aria-labelledby="headingOne" *ngIf="usuario">
+                                <div class="panel-body">
+                                    <form role="form" class="form-inline formulario">
+                                        <div class="row">
+                                            <div class="form-group col-xs-12">
+                                                <label for="">E-mail</label>
+                                                <input type="email"
+                                                       class="form-control error-input"
+                                                       id="email"
+                                                       placeholder="Difite seu e-mail"
+                                                       [value]="usuario.email"
+                                                       readonly
+                                                       name="usuario_email"
+                                                >
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-xs-6">
+                                                <label for="">Nome</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="nome"
+                                                       placeholder="Digite aqui"
+                                                       [(ngModel)]="usuario.nome"
+                                                       name="usuario_nome"
+                                                />
+                                            </div>
+                                            <div class="form-group col-xs-6">
+                                                <label for="">Sobrenome</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="sobrenome"
+                                                       placeholder="Digite aqui"
+                                                       [(ngModel)]="usuario.sobrenome"
+                                                       name="usuario_sobrenome"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-xs-6">
+                                                <label for="">CPF</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="cpf"
+                                                       placeholder="Difite aqui"
+                                                       [value]="usuario.cpf"
+                                                       readonly
+                                                       name="usuario_cpf"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-xs-6">
+                                                <label for="">Celular</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="celular"
+                                                       placeholder="( ) 90000-0000"
+                                                       [(ngModel)]="usuario.celular"
+                                                       name="usuario_celular"
+                                                />
+                                            </div>
+                                            <div class="form-group col-xs-6">
+                                                <label for="">Telefone</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="telefone"
+                                                       placeholder="( ) 9000-0000"
+                                                       [(ngModel)]="usuario.telefone"
+                                                       name="usuario_telefone"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <button class="btn btn-blue--new" (click)="editarCadastro()">Editar dados</button>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <button class="btn green-button add-inactive" (click)="mostrarEndereco = true">Ir para entrega</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/seção dados pessoais-->
+
+                        <!--seção endereço-->
+                        <div class="accordion-payment--content">
+                            <div class="" role="tab" id="pay-02">
+                                <h4 class="">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion-payment"
+                                       href="#collapse-02" aria-expanded="true" aria-controls="collapseOne" class="accordion-name">
+                                        <span class="sprites-gps-payment"></span>2. Entrega
+                                    </a>
+                                </h4>
+                            </div>
+
+                            <div id="collapse-02" class="panel-collapse" role="tabpanel" aria-labelledby="headingOne" *ngIf="mostrarEndereco">
+                                <!--loading-->
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div *ngIf="!enderecos" class="text-center">
+                                            <ion-spinner></ion-spinner> Carregando...
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/loading-->
+
+                                <div class="panel-body" *ngIf="enderecos">
+
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <span>Entregar em:</span>
+                                        </div>
+                                        <div class="col-xs-12 form-group">
+                                            <ion-select placeholder="Escolha sua cidade"
+                                                        name="endereco_nome"
+                                                        interface="popover"
+                                                        [(ngModel)]="enderecoAtivo"
+                                                        (ngModelChange)="enderecoAlterado($event)"
+                                                        [selectOptions]="selectOptions"
+                                                        cancelText="Cancelar"
+                                                        class="form-control"
+                                            >
+                                                <ion-option *ngFor="let endereco of enderecos" [value]="endereco">
+                                                    {{endereco.pag_usu_end_nome}}
+                                                </ion-option>
+                                            </ion-select>
+                                        </div>
+                                    </div>
+
+                                    <form role="form" class="form-inline formulario">
+                                        <div class="row">
+                                            <div class="form-group col-xs-6">
+                                                <label for="">Cep</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="cep"
+                                                       placeholder="Digite seu cep"
+                                                       [ngModel]="enderecoAtivo.pag_usu_end_cep"
+                                                       readonly
+                                                       name="endereco_cep"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-xs-12">
+                                                <label for="">Endereço</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="endereco"
+                                                       placeholder="Digite aqui"
+                                                       [ngModel]="enderecoAtivo.pag_usu_end_logradouro"
+                                                       readonly
+                                                       name="endereco_logradouro"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div class="row" *ngIf="enderecoAtivo.pag_usu_end_complemento">
+                                            <div class="col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="">Complemento</label>
+                                                    <input type="text"
+                                                           class="form-control"
+                                                           id="complemento"
+                                                           placeholder="Ex:Casa"
+                                                           [ngModel]="enderecoAtivo.pag_usu_end_complemento ? enderecoAtivo.pag_usu_end_complemento : ''"
+                                                           readonly
+                                                           name="endereco_complemento"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-xs-6">
+                                                <label for="">Bairro*</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="bairro"
+                                                       placeholder="Aguardando cep"
+                                                       [ngModel]="enderecoAtivo.pag_bairro ? enderecoAtivo.pag_bairro.pag_bai_nome : enderecoAtivo.pag_bairro.pag_usu_end_bairro_descricao"
+                                                       readonly
+                                                       name="endereco_bairro"
+                                                />
+                                            </div>
+
+                                            <div class="form-group col-xs-6">
+                                                <label for="">Cidade*</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="cidade"
+                                                       placeholder="Aguardando cep"
+                                                       [ngModel]="enderecoAtivo.pag_cidade.pag_cid_nome"
+                                                       readonly
+                                                       name="endereco_cidade"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-xs-6">
+                                                <label for="">Estado*</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       id="estado"
+                                                       placeholder="Aguardando cep"
+                                                       [ngModel]="enderecoAtivo.pag_cidade.pag_estado.pag_est_uf"
+                                                       name="endereco_estado"
+                                                       readonly
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-xs-12">
+                                                <label for="">Referência</label>
+                                                <input type="text" class="form-control" id="ref" placeholder="Digite aqui" name="referencia" [(ngModel)]="pedido.referencia">
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-xs-12">
+                                                <label for="">Destinatário</label>
+                                                <input type="text" class="form-control" id="dest" placeholder="Digite aqui" name="destinatario" [(ngModel)]="pedido.destinatario">
+                                            </div>
+                                        </div>
+
+                                        <div class="content-delivery">
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <span class="title">Tipo de entrega:</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xs-12" *ngFor="let entrega of resumo.estabelecimento.opcoes_de_entrega">
+                                                    <label class="radio-button" (click)="selecionarTipoDeEntrega(entrega)">
+                                                        <input type="radio" name="radio">
+                                                        <span class="label-visible active">
+                                                            <span class="fake-radiobutton"></span>{{entrega.tipo_nome}}<br/>
+                                                            <span class="price">{{entrega.descricao}}</span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xs-12 text-center">
+                                                    <button class="btn green-button add-inactive" (click)="mostrarPagamento = true" [disabled]="desabilitarBotaoIrParaPagamento">Ir para pagamento</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/seção endereço-->
+
+                        <!--seção pagamento-->
+                        <div class="accordion-payment--content payment">
+                            <div class="" role="tab" id="pay-03">
+                                <h4 class="">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion-payment"
+                                       href="#collapse-03" aria-expanded="true" aria-controls="collapseOne" class="accordion-name">
+                                        <span class="sprites-card-payment"></span>3. Pagamento
+                                    </a>
+                                </h4>
+                            </div>
+
+                            <div id="collapse-03" class="panel-collapse" role="tabpanel" aria-labelledby="headingOne" *ngIf="mostrarPagamento && !desabilitarBotaoIrParaPagamento">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <h1>Vendido e entregue por:</h1>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xs-12 text-center store-logo">
+                                            <img src="{{resumo.estabelecimento.pag_est_logo}}" alt="resumo.estabelecimento.pag_est_marca" class="store">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xs-12 text-center">
+                                            <p class="itens">
+                                                <strong>{{resumo.lista.length}}</strong>
+                                                <span><strong>/{{configuracao.lista.produtos.length}}</strong> itens</span>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row itens-valor">
+                                        <div class="col-xs-7">
+                                            <span class="text">Valor do seu pedido:</span>
+                                        </div>
+
+                                        <div class="col-xs-5">
+                                            <span class="valor">R$ {{resumo.sub_total | number:'1.2-2'}}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row itens-valor">
+                                        <div class="col-xs-7">
+                                            <span class="text">Frete:</span>
+                                        </div>
+
+                                        <div class="col-xs-5">
+                                            <span class="valor">R$ {{resumo.estabelecimento.frete | number:'1.2-2'}}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row itens-valor" *ngIf="resumo.estabelecimento.taxa_de_conveniencia">
+                                        <div class="col-xs-7">
+                                            <span class="text">Taxa de conveniência:</span>
+                                        </div>
+
+                                        <div class="col-xs-5">
+                                            <span class="valor">R$ {{resumo.estabelecimento.taxa_de_conveniencia | number:'1.2-2'}}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row itens-total">
+                                        <div class="col-xs-5">
+                                            <span class="text">Total:</span>
+                                        </div>
+
+                                        <div class="col-xs-7">
+                                            <span class="valor">R$ {{calcularTotal() | number:'1.2-2'}}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row btn-final">
+                                        <div class="col-xs-12 text-center">
+                                            <button class="btn btn-blue--new" (click)="paginaCarrinho($event)">Ver pedido</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <!-- Nav tabs -->
+                                            <ul class="nav nav-tabs" role="tablist">
+                                                <!--<li role="presentation" class="active"><a href="#debito" aria-controls="debito" role="tab" data-toggle="tab">Cartão de debito</a></li>-->
+                                                <!--<li role="presentation" class="active"><a href="#" aria-controls="credito" role="tab" data-toggle="tab">Cartão de crédito</a></li>-->
+                                                <!--<li role="presentation"><a href="#boleto" aria-controls="boleto" role="tab" data-toggle="tab">Boleto</a></li>-->
+                                                <li role="presentation" class="active"><a href="#" aria-controls="credito" role="tab">Cartão de crédito</a></li>
+                                            </ul>
+
+                                            <!-- Tab panes -->
+                                            <div class="tab-content">
+                                                <div role="tabpanel" class="tab-pane" id="debito"></div>
+                                                <div role="tabpanel" class="tab-pane active" id="credito">
+                                                    <form role="form" class="form-inline formulario">
+                                                        <div class="row">
+                                                            <div class="form-group col-xs-12 wrapper-card-number">
+                                                                <label for="">Número do cartão:</label>
+                                                                <input type="number"
+                                                                       class="form-control"
+                                                                       id="num-cart"
+                                                                       placeholder="Digite o número do cartão"
+                                                                       (keyup)="verificarBandeiraCartao(cartaoNumero.value)"
+                                                                       #cartaoNumero
+                                                                       name="cartao_numero"
+                                                                       [(ngModel)]="cartao.numero"
+                                                                       (blur)="validarNumeroDoCartao()"
+                                                                />
+                                                                <span class="text-danger" *ngIf="!numeroDoCartaoCorreto">O número da cartão não é valido!</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row form-group">
+                                                            <div class="col-xs-4 text-center"><img src="images/cartoes/visa.png" *ngIf="cartao.bandeira == 'visa' || !cartao.bandeira" /></div>
+                                                            <div class="col-xs-4 text-center"><img src="images/cartoes/master.png" *ngIf="cartao.bandeira == 'master' || !cartao.bandeira" /></div>
+                                                            <div class="col-xs-4 text-center"><img src="images/cartoes/amex.png" *ngIf="cartao.bandeira == 'amex' || !cartao.bandeira" /></div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="form-group col-xs-12">
+                                                                <label for="">Nome no cartão:</label>
+                                                                <input type="text"
+                                                                       class="form-control"
+                                                                       id="nome"
+                                                                       placeholder="Ex: João Silva"
+                                                                       name="cartao_nome"
+                                                                       [(ngModel)]="cartao.nomeCompleto"
+                                                                />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-xs-4">
+                                                                <label for="">Validade:</label>
+                                                            </div>
+                                                            <div class="col-xs-8">
+                                                                <label for="">Código de segurança:</label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row form-group">
+                                                            <div class="col-xs-4">
+                                                                <select class="form-control" name="cartao_mes" [(ngModel)]="cartao.mes">
+                                                                    <option>Mês</option>
+                                                                    <option *ngFor="let mes of meses(), let i = index" value="{{i}}">{{mes}}</option>
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="col-xs-4">
+                                                                <select class="form-control" name="cartao_ano" [(ngModel)]="cartao.ano">
+                                                                    <option *ngFor="let ano of anos()" value="{{ano}}">{{ano}}</option>
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="col-xs-4">
+                                                                <div class="content-input">
+                                                                    <label for=""></label>
+                                                                    <input type="string"
+                                                                           class="form-control"
+                                                                           id="cvv"
+                                                                           placeholder="CVV"
+                                                                           [(ngModel)]="cartao.cvv"
+                                                                           name="cartao_cvv"
+                                                                           pattern="\d{3,4}"
+                                                                           #cvv
+                                                                    />
+                                                                    <div class="text-danger" *ngIf="cvv.invalid && (cvv.dirty || cvv.touched)">
+                                                                        <span *ngIf="cvv.errors.pattern">CVV incorreto</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!--<div class="row">-->
+                                                            <!--<div class="form-group col-xs-7">-->
+                                                                <!--<label for="">Pagar em quantas vezes?</label>-->
+                                                                <!--<select class="form-control">-->
+                                                                    <!--<option>Aguardando cartão</option>-->
+                                                                <!--</select>-->
+                                                            <!--</div>-->
+                                                        <!--</div>-->
+
+                                                        <div class="row" style="margin: 30px;">
+                                                            <div class="col-xs-12 text-center form-group ">
+                                                                <button class="btn green-button add-inactive" (click)="finalizarCompra()">Finalizar Compra</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div role="tabpanel" class="tab-pane" id="boleto">...</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/seção pagamento-->
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <!--/ acordion payment-->
+
+
+        <div class="container-fluid">
+            <section class="row">
+                <div class="col-xs-12">
+                    <div class="wrapper">
+
+                        <!--logo body-->
+                        <div class="content-logo--body">
+                            <img src="assets/images/static/zukkin-logo-mobile-body.png" alt="" >
+                        </div>
+                        <!--/logo-body-->
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <!--/main-->
+
+    <app-footer [navCtrl]="navCtrl"></app-footer>
+</ion-content>

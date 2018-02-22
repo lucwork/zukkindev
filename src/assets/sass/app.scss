@@ -1,0 +1,150 @@
+// variables
+@import "variables/_pallete";
+@import "variables/_variables";
+
+//utilities
+@import "utilities/_placeholder";
+@import "utilities/_mixins";
+@import "utilities/replace";
+@import "utilities/_fonts";
+@import "utilities/_button";
+
+//base
+//@import "base/normalize";
+@import "base/_base";
+
+//components
+@import "components/_vitrine.scss";
+@import "components/_how-to-works";
+@import "components/_modais";
+@import "components/_product-detail";
+@import "components/_breadcrumbie";
+@import "components/_filter-catalog";
+
+
+//layout
+//remover após o termino do projeto, csss já esta´incluindo inline
+@import "layout/media";
+@import "layout/_menu";
+@import "layout/_footer";
+@import "layout/header";
+@import "layout/firstfold";
+
+#menu{ z-index: 15; }
+//.menu-inner{ width: 100%; }
+.menu-inner{
+    width: 100% !important;
+}
+.input-ios .text-input-ios {
+    margin: 0 !important;
+}
+.toolbar-background-ios {
+    background-color: transparent;
+    color: #000;
+}
+.toolbar-background-md {
+    background-color: transparent !important;
+    color: #000;
+}
+.label {
+    color: #000;
+}
+ion-col.form-group {
+    padding-left: 15px;
+    padding-right: 15px ;
+}
+.row {
+    margin: 0;
+}
+ion-row {
+    @extend .row;
+}
+[col-6] {
+    @extend .col-xs-6;
+}
+.label {
+    color: #455a64;
+    font-size: 15px;
+}
+
+.modal-header {
+    .close {
+        font-size: 37px;
+    }
+
+    h4 {
+        color: #455a64;
+        font-weight: bold;
+    }
+}
+
+.modal-body {
+    //overflow-x: scroll;
+}
+
+.modal-body .formulario {
+    margin-top: 30px;
+}
+
+#input-cep, #search, #login, #editarLista
+, #filtrar-estabelecimentos
+, #carrinho
+{
+    display: block;
+    height: 100%;
+}
+#filtrar-estabelecimentos .modal-content .modal-body .stores-content .content-vertical
+, #carrinho .modal-content .modal-body .product-list-cart .content-vertical {
+    max-height: none;
+}
+.modal-footer {
+    background-color: #FFFFFF;
+}
+.modal-dialog .modal-content {
+    height: auto;
+}
+
+a.icone-mercado {
+    background-image:url("../assets/images/icons/icone-estabelecimento.png");
+    display:inline-block;
+    background-repeat:no-repeat;
+    overflow:hidden;
+    width: 22px;
+    height: 21px;
+}
+
+.content-product--vitrine .product-list .products-group {
+    background-color: transparent;
+}
+
+.pm_menu-body ul li a {
+    padding: 2px;
+    line-height: 36px;
+    font-size: 20px;
+}
+.pm_menu-body ul li {
+    line-height: 40px;
+}
+
+.comparativo header {
+    z-index: 2;
+}
+
+.toast-dialog {
+    white-space: pre-line;
+}
+
+.scroll-content {
+    margin: 0 !important;
+}
+
+.comparativo .you-are {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.bg-red-light {
+    color: #FFFFFF !important;
+}

@@ -1,0 +1,29 @@
+<ion-content>
+
+    <!--Obrigado-->
+    <div class="modal-header">
+        <a href="#" class="close closeModal" data-dismiss="modal" aria-hidden="true" (click)="paginaHome($event)">&times;</a>
+        <h4 class="modal-title" id="">Obrigado pelo seu pedido!</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-xs-12">
+                <p>Seu pedido foi recebido e está sendo processado.</p>
+                <p>Você pode acompanha-lo pela tela de <strong>meus pedidos.</strong></p>
+                <p>Nº do pedido:</p>
+                <p class="live-red">{{id}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-xs-12">
+                <p class="text-left">
+                    <button class="btn btn-red--light" (click)="paginaPedidos($event)">Ir para meus pedidos</button>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!--/Obrigado-->
+
+</ion-content>

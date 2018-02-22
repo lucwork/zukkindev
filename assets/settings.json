@@ -1,0 +1,7 @@
+{
+  "api-web": {
+    "url": "http://api-web.zukkin.dev"
+  },
+  "clear-storage" : true,
+  "current-version": "2.1.1"
+}

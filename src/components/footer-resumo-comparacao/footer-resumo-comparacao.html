@@ -1,0 +1,69 @@
+<div class="you-are bg-white">
+
+    <!--loading-->
+    <div class="row">
+        <div class="col-xs-12">
+            <div *ngIf="exibirLoading" class="text-center">
+                <ion-spinner></ion-spinner> Carregando estabelecimentos...
+            </div>
+        </div>
+    </div>
+    <!--/loading-->
+
+    <!--mensagem caso nenhum preço for encontrado-->
+    <div class="row" *ngIf="configuracao.resumoComparacao.length == 0 && !exibirLoading">
+        <div class="col-xs-12">
+            Nenhum preços encontrado
+        </div>
+    </div>
+    <!--/mensagem caso nenhum preço for encontrado-->
+
+    <!--resumo-->
+    <div class="row" *ngIf="configuracao.resumoComparacao.length > 0">
+        <!--seta p/ esquerda-->
+        <div class="col-xs-1 you-are--text arrow-left" (click)="anterior($event)">
+            <a href="#" class="sprites-arrow-product-left" (click)="anterior($event)">prev</a>
+        </div>
+        <!--/seta p/ esquerda-->
+
+        <!--slides-->
+        <div class="col-md-9 col-xs-8">
+            <ion-slides>
+                <ion-slide class="item-store" *ngFor="let item of configuracao.resumoComparacao.slice(0,10); let index = index">
+                    <div class="resumo-footer-estabelecimento-bandeira text-left col-xs-5 col-md-4">
+                        <span class="resumo-footer-posicao">{{index + 1}}º)</span>
+                        <img src="{{ item.estabelecimento.pag_est_logo }}" alt="{{ item.estabelecimento.pag_est_marca }}" class="store">
+                    </div>
+                    <div class="xs-hidden col-md-4">
+                        <div class="resumo-footer-label">
+                            <span class="resumo-footer-marca">{{ item.estabelecimento.pag_est_marca }}</span>
+                            <span class="resumo-footer-local">{{ item.estabelecimento.pag_est_local_b2c }}</span>
+                        </div>
+                    </div>
+                    <div class="resumo-footer-info col-xs-7 col-md-4">
+                        <div class="produtos">{{ item.lista.length }}/{{lista.produtos.length}} itens</div>
+                        <div class="valor-total">R$ {{ item.total | number:'1.2-2' }}</div>
+                    </div>
+                </ion-slide>
+            </ion-slides>
+        </div>
+        <!--/slides-->
+
+        <!--seta p/ direita-->
+        <div class="col-xs-1 you-are--text arrow-right" (click)="proximo($event)">
+            <a href="#" class="sprites-arrow-product-right" (click)="proximo($event)">next</a>
+        </div>
+        <!--/seta p/ direita-->
+
+        <!--botão mostrar mais-->
+        <div class="col-md-1 col-xs-2 btn-trocar">
+            <div class="content-left">
+                <button class="btn btn-transparent" (click)="comparacao()">+</button>
+            </div>
+        </div>
+        <!--/botão mostrar mais-->
+
+    </div>
+    <!--/resumo-->
+
+</div>

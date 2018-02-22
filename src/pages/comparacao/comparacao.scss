@@ -1,0 +1,62 @@
+page-comparacao {
+    .col-xs-10 { 
+        padding: 0;
+    }
+    .sprites-arrow-left {
+        background: url(../images/static/png-sprites/arrow-left-box-red.png) no-repeat;
+        width: 43px;
+        height: 40px;
+        display: block;
+        text-indent: -9999px;
+        position: absolute;
+        top: 50%;
+    }
+
+    .sprites-arrow-right {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        width: 43px;
+        height: 40px;
+        display: block;
+        text-indent: -9999px;
+        background: url(../images/static/png-sprites/arrow-right-box-red.png) no-repeat;
+    }
+
+    .btn-transparent.arrow-up .sprites-arrow-select-fake {
+        background: url(../images/static/png-sprites/arrow-select-fake-up.png) no-repeat;
+    }
+
+    .comparativo.comparacao-page .body .change-store .btn-transparent,
+    .detail-more-btn {
+        width: 100%;
+        margin: 4px;
+    }
+
+    .product-list-name {
+        color: #546e7a;
+        font-size: 16px;
+        font-weight: bold;
+        margin: 1px;
+        padding: 1px;
+    }
+
+    .price {
+        color: #ed2c2a;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .product-list-name {
+        text-align: center;
+        margin: auto;
+    }
+    .product-list-prices {
+        margin: auto;
+        text-align: center;
+    }
+
+    .comparacao-endereco {
+        text-align: center;
+        font-size: 14px;
+    }
+}

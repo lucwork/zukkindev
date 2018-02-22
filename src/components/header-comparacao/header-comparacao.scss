@@ -1,0 +1,21 @@
+.comparativo {
+    header {
+        app-header-comparacao {
+            .item {
+                height: 60px;
+                margin-top: -16px;
+                width: 24.8%;
+
+                .compare-item {
+                    margin-top: 0;
+                    padding: 20px 0;
+                    text-align: center;
+                }
+            }
+
+            .icone-mercado {
+                background-size: 22px;
+            }
+        }
+    }
+}

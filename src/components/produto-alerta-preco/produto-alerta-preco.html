@@ -1,0 +1,34 @@
+<div class="container" *ngIf="alerta">
+    <!--achei caro-->
+    <section class="achei-caro--content">
+        <div class="row">
+            <div class="achei-caro col-xs-12">
+                <h1>Achei Caro:</h1>
+                <p>Me avise quando o preço chegar em:</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <form role="form" class="form-inline formulario">
+                <div class="form-group col-xs-6">
+                    <input type="text"
+                           class="form-control"
+                           id="price-alert"
+                           [value]="alerta.pagAlePreco | number:'1.2-2'"
+                           name="preco"
+                           #preco
+                           [textMask]="{mask: mascara}">
+                </div>
+                <div class="form-group col-xs-6">
+                    <button type="button" class="btn red-button add-active" (click)="salvar($event, preco.value)" *ngIf="!requisicao">
+                        {{ alerta.pagAleId ? 'Editar alerta' : 'Criar alerta' }}
+                    </button>
+                    <button type="button" class="btn red-button add-active" *ngIf="requisicao" disabled>
+                        Processando...
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <!--/achei caro -->
+</div>

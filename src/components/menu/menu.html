@@ -1,0 +1,55 @@
+
+<div id="pm_menu" class="pm_close">
+    <div class="pm_menu-header">
+        <div class="col-xs-4">
+            <span>O que deseja fazer?</span>
+        </div>
+        <div class="col-xs-6">
+            <app-modo-de-visualizacao [modo]="configuracao.modo"></app-modo-de-visualizacao>
+        </div>
+        <div class="col-xs-2 pull-right" (click)="closeMenu()">
+            <a class="pm_overlay sprites-close">Fechar</a>
+        </div>
+    </div>
+    <div class="pm_menu-body">
+        <ul>
+            <li (click)="categoria(211, 'Carnes')"><a href="#" class="carnes"><span class="sprites-carnes"></span>Carnes</a></li>
+            <li (click)="categoria(155, 'Bebidas')"><a href="#" class="bebidas"><span class="sprites-bebi"></span>Bebidas</a></li>
+            <li (click)="categoria(209, 'Frios')"><a href="#" class="frios"><span class="sprites-frio"></span>Frios</a></li>
+            <!--<li><a href="#" class="laticinios"><span class="sprites-lati" ></span>Laticinios</a></li>-->
+            <li (click)="categoria(34, 'Matinas')"><a href="#" class="matinais"><span class="sprites-matin"></span>Matinais</a></li>
+            <!--<li><a href="#" class="sobremesas"><span class="sprites-sobre"></span>Sobremesas</a></li>-->
+            <li (click)="categoria(140, 'Perfumaria')"><a href="#" class="perfumaria"><span class="sprites-perfum"></span>Perfumaria</a></li>
+            <!--<li><a href="#" class="higiene"><span class="sprites-higi"></span>Higiene</a></li>-->
+            <li (click)="categoria(103, 'Cereais')"><a href="#" class="cereais"><span class="sprites-cere"></span>Cereais</a></li>
+            <li (click)="categoria(55, 'Mercearia')"><a href="#" class="mercearia"><span class="sprites-merce"></span>Mercearia</a></li>
+            <li (click)="categoria(197, 'Hortifruit')"><a href="#" class="hortfruti"><span class="sprites-horti"></span>Hortfruti</a></li>
+            <!--<li><a href="#" class="all-departaments"><span class="sprites-all-dp"></span><strong>Todos departamentos</strong></a></li>-->
+        </ul>
+
+        <div class="content-menu--mobile">
+            <div class="content-menu--lista">
+                <ul>
+                    <li><a href="" dp-type="aves">Aves</a></li>
+                    <li><a href="" dp-type="bovinas">Bovinas</a></li>
+                    <li><a href="" dp-type="peixes">Peixes e Crustáceos</a></li>
+                    <li><a href="" dp-type="suinas">Suínas</a></li>
+                    <li><a href="" dp-type="linguicas">Linguiças e Salsichas</a></li>
+                    <li><a href="" dp-type="especiais">Exóticas e Especiais</a></li>
+                    <li><a href="" class="see-all" dp-type="tudo">ver tudo</a></li>
+                </ul>
+            </div>
+
+            <div class="content-menu--footer">
+                <img src="../assets/images/static/banner-menu.png" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="pm_menu-footer" *ngIf="configuracao.usuario.token">
+        <ul>
+            <li><a href="#" (click)="minhaConta()"><span class="sprites-user-white"></span>Minha conta</a></li>
+            <li><a href=""><span class="sprites-white-list"></span>Minhas listas</a></li>
+            <li><a href="#" (click)="meusPedidos()"><span class="sprites-pedidos"></span>Meus pedidos</a></li>
+        </ul>
+    </div>
+</div>

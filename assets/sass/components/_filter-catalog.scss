@@ -1,0 +1,67 @@
+.filter-catalogo {
+  .filter-catalogo--title {
+    h1 {
+      border-bottom: 1px solid $gray-light;
+      color: $lead;
+      font-size: $space-sm + $space-xs;
+      font-weight: bold;
+      margin: 0;
+      margin: $space-sm 0;
+      padding: $space-sm 0;
+
+      span {
+        color: $red-live;
+        font-weight: normal;
+      }
+    }
+
+    h2 {
+      color: $gray-dark;
+      font-size: $space-sm + $space-xs;
+    }
+  }
+
+  .accordion-body {
+    background: white;
+    padding: $space-sm;
+    margin: $space-xs 0;
+
+    .accordion-name {
+      color: $green-dark;
+      font-weight: bold;
+
+      &:after {
+        @extend %arrow-select;
+        background: url('../images/static/png-sprites/big-arrow-down.png') no-repeat !important;
+      }
+
+      &.arrow-up {
+        &:after {
+          @extend %arrow-up;
+          background: url('../images/static/png-sprites/big-arrow-up.png') no-repeat !important;
+        }
+      }
+    }
+
+    .panel-body {
+      padding: 0;
+      padding-left: $space-sm;
+
+      .link {
+        color: $lead-ultra-light;
+      }
+
+      .link-all {
+        color: $red-live;
+      }
+    }
+  }
+}
+
+.content-product--vitrine {
+  margin: $space-sm 0;
+
+  .products-group {
+    margin: $space-sm 0;
+  }
+}

@@ -1,0 +1,17 @@
+app-footer {
+    footer {
+        &.bg-gray {
+            margin-top: 0;
+        }
+
+        .payfor {
+            height: auto;
+            padding-bottom: 80px;
+
+            &.aumentar-padding {
+                padding-bottom: 150px;
+            }
+        }
+    }
+}
+

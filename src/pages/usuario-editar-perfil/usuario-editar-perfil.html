@@ -1,0 +1,161 @@
+
+<ion-content class="main">
+  <div class="modal-header">
+    <a href="#" class="close closeModal" data-dismiss="modal" aria-hidden="true" (click)="voltar()">×</a>
+    <h4 class="modal-title" id="">Editar Perfil</h4>
+  </div>
+
+  <form role="form" class="form-inline formulario" validate (submit)="atualizar()">
+    <div class="row">
+      <div class="form-group col-xs-6">
+        <label for="">Nome*</label>
+        <input type="text" class="form-control" id="nome" placeholder="Digite aqui" [(ngModel)]="usuario.nome" name="nome" required #nome="ngModel">
+        <div class="text-danger" *ngIf="nome.invalid && (nome.dirty || nome.touched)">
+          <span *ngIf="nome.errors.required">O nome é obrigatório</span>
+        </div>
+      </div>
+      <div class="form-group col-xs-6">
+        <label for="">Sobrenome*</label>
+        <input type="text" class="form-control" id="sobrenome" placeholder="Digite aqui" [(ngModel)]="usuario.sobrenome" name="sobrenome" #sobrenome="ngModel" required>
+        <div class="text-danger" *ngIf="sobrenome.invalid && (sobrenome.dirty || sobrenome.touched)">
+          <span *ngIf="sobrenome.errors.required">O sobrenome é obrigatório</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-xs-6">
+        <label for="">Sexo*</label>
+        <select class="form-control select-sex" [(ngModel)]="usuario.sexo" name="sexo" required>
+          <option value="masculino" selected>Masculino</option>
+          <option value="feminino">Feminino</option>
+        </select>
+      </div>
+
+      <div class="form-group col-xs-6">
+        <label for="">CPF*</label>
+        <input type="text"
+               class="form-control"
+               id="cpf"
+               placeholder="Digite seu CPF"
+               [(ngModel)]="usuario.cpf"
+               name="cpf" #cpf="ngModel"
+               [readonly]="temCpf"
+               [textMask]="{mask: mascara.cpf}">
+        <div class="text-danger" *ngIf="cpf.invalid && (cpf.dirty || cpf.touched)">
+          <span *ngIf="cpf.errors.required">O CPF é obrigatório</span>
+        </div>
+      </div>
+    </div>
+
+    <div class=" form-group" *ngIf="!temDataNascimento">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="nasc">
+            <span>Data de nascimento*</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <div class="col-xs-4">
+          <select class="form-control" name="dia" [(ngModel)]="data.dia" required >
+            <option value='' selected>Dia</option>
+            <option *ngFor="let dia of dias()" value='{{ dia }}'>{{ dia }}</option>
+          </select>
+        </div>
+
+        <div class="col-xs-4">
+          <select class="form-control" name="mes" [(ngModel)]="data.mes">
+            <option value='' selected>Mês</option>
+            <option *ngFor="let mes of meses(); let i = index" value="{{ i }}">{{ mes }}</option>
+          </select>
+        </div>
+
+        <div class="col-xs-4">
+          <select class="form-control" name="ano" [(ngModel)]="data.ano">
+            <option value='' selected>Ano</option>
+            <option *ngFor="let ano of anos()" value='{{ ano }}'>{{ ano }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-xs-6">
+        <label for="">Celular*</label>
+        <input type="text"
+               class="form-control"
+               id="celular"
+               placeholder="( ) 90000-0000"
+               [(ngModel)]="usuario.celular"
+               name="celular"
+               required
+               #celular="ngModel"
+               [textMask]="{mask: mascara.celular}">
+        <div class="text-danger" *ngIf="celular.invalid && (celular.dirty || celular.touched)">
+          <span *ngIf="celular.errors.required">O celular é obrigatório</span>
+        </div>
+      </div>
+
+      <div class="form-group col-xs-6">
+        <label for="">Telefone</label>
+        <input type="text"
+               class="form-control"
+               id="telefone"
+               placeholder="( ) 9000-0000"
+               [(ngModel)]="usuario.telefone"
+               name="telefone"
+               #telefone="ngModel"
+               [textMask]="{mask: mascara.telefone}">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <label for="">E-mail*</label>
+        <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail" name="email" [(ngModel)]="usuario.email" required readonly #email="ngModel">
+        <div class="text-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+          <span *ngIf="email.errors.required">O email é obrigatório</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="usuario.facebook_id == null">
+      <div class="form-group col-xs-6">
+        <label for="">Alterar Senha</label>
+        <input type="password"
+               class="form-control"
+               id="senha"
+               placeholder="Informe a senha"
+               name="senha"
+               [(ngModel)]="usuario.plainPassword"
+               #senha="ngModel"
+               minlength="6"
+        >
+        <div>
+          <span >Informe se quiser atualizá-la</span>
+        </div>
+        <div class="text-danger" *ngIf="senha.invalid && (senha.dirty || senha.touched)">
+          <span *ngIf="senha.errors.minlength">A senha deve ter no mínimo 6 caracteres</span>
+        </div>
+      </div>
+      <div class="form-group col-xs-6">
+        <label for="">Confirmar senha*</label>
+        <input type="password" class="form-control" id="confirmarSenha" placeholder="Confirme a senha" #confirmarSenha (keyup)="0" required>
+        <div class="text-danger" *ngIf="confirmarSenha.value != usuario.plainPassword && senha.touched">
+          <span>A senha deve ser igual</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 text-right">
+        <div class="container-btn--confirm">
+          <button class="btn btn-blue--confirm" type="submit">Continuar</button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+</ion-content>

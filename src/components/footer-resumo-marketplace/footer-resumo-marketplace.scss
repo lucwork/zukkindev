@@ -1,0 +1,27 @@
+app-footer-resumo-marketplace {
+    .you-are {
+        .you-are--store {
+            width: 58%;
+
+            .estabelecimento-selecionado {
+                font-size: 13px;
+
+                img {
+                    width: auto;
+                    border: 0;
+                    max-height: 30px;
+                    float: left;
+                    margin-right: 3px;
+                }
+
+                .resumo-footer-local {
+                    color: #6e6e6e;
+                }
+            }
+        }
+    }
+}
+
+.footer-fixe app-footer-resumo-marketplace .you-are .you-are--store {
+    padding: 8px 10px;
+}

@@ -1,0 +1,120 @@
+<ion-content id="carrinho">
+    <!--carrinho-->
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!--footer fixe adaptado cart-->
+
+                <div class="footer-fixe row">
+                    <div class="you-are bg-white" style="width: 100%;">
+                        <div class="col-xs-5 you-are--text">
+                            <p>Meu carrinho</p>
+                        </div>
+                        <div class="col-xs-5" *ngIf="estabelecimento666">
+                            <div class="content-left">
+                                <img src="{{ estabelecimento666.estabelecimento.pag_est_logo }}"
+                                     alt="{{ estabelecimento666.estabelecimento.pag_est_marca }}" class="store">
+                            </div>
+                        </div>
+
+                        <div class="col-xs-2">
+                            <a href="#" (click)="fechar()" class="close closeModal" data-dismiss="modal"
+                               aria-hidden="true">&times;</a>
+                        </div>
+                    </div>
+                </div>
+                <!--/footer adaptado cart-->
+                <!--itens compra-->
+                <div class="itens-compra--content" style="margin-top: 31px; margin-bottom: -89px;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="mCustomScrollbar">
+                                <ul class="content">
+                                    <ng-container *ngFor="let cat of filtro_categorias">
+                                        <li *ngIf="cat.quantidade" (click)="filtro(cat)">
+                                            <span class="{{cat.icone}}"></span>
+                                            <div *ngIf="cat.quantidade" class="carret-red">
+                                                <span>{{cat.quantidade}}</span>
+                                            </div>
+                                        </li>
+                                    </ng-container>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal-body">
+                <div class="all-product" *ngIf="categoria_filtrada">
+                    <h1>{{categoria_filtrada.titulo}}</h1>
+                </div>
+
+                <div class="product-list-cart">
+                    <div class="content-vertical" *ngIf="estabelecimento666">
+                        <div class="content-vertical--wrap" *ngFor="let lista of estabelecimento666.lista">
+                            <ng-container *ngIf="exibeProduto(lista.produto)">
+                                <div class="product-list-item">
+                                    <img src="{{lista.produto.pag_pro_imagem}}" alt="{{lista.produto.pag_pro_nome}}"
+                                         class="img-responsive">
+                                </div>
+                                <div class="product-list-name">
+                                    <p>{{lista.produto.pag_pro_nome}}</p>
+                                </div>
+                                <div class="product-list-select">
+                                    <app-produto-select-quantidade [navCtrl]="navCtrl" [produto]="lista.produto"></app-produto-select-quantidade>
+                                </div>
+
+                                <div class="product-list-prices">
+                                    <div class="prices">
+                                        <div>
+                                            <span *ngIf="lista.preco_promocao">Un.: R$ {{lista.preco_promocao|number:'1.2-2'}}</span>
+                                            <span *ngIf="lista.preco_normal">Un.: R$ {{lista.preco_normal|number:'1.2-2'}}</span>
+                                        </div>
+                                        <div class="price" *ngIf="!exibirLoading">R$ {{lista.sub_total|
+                                            number:'1.2-2'}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-list-close">
+                                    <a class="close" (click)="remover(lista.produto)">&times;</a>
+                                </div>
+                            </ng-container>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+    <!--/carrinho-->
+
+</ion-content>
+<ion-footer class="modal-footer">
+    <!--loading-->
+    <div class="row">
+        <div class="col-xs-12">
+            <div *ngIf="exibirLoading" class="text-center">
+                <ion-spinner></ion-spinner>
+                Calculando o total...
+            </div>
+        </div>
+    </div>
+    <!--/loading-->
+    <div class="row" *ngIf="estabelecimento666 && !exibirLoading">
+        <div class="col-xs-5">
+            <p class="total-itens" *ngIf="lista">
+                <strong>
+                    <span class="valor-maior">{{estabelecimento666.lista.length}}</span>/{{lista.produtos.length}}
+                </strong> itens
+            </p>
+            <p class="total">R$ {{estabelecimento666.sub_total | number:'1.2-2'}}</p>
+        </div>
+        <div class="col-xs-7">
+            <a href="#" class="btn green-button add-inactive" (click)="paginaFinalizarCompra($event)">Finalizar</a>
+        </div>
+    </div>
+
+</ion-footer>

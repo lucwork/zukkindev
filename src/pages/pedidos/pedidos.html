@@ -1,0 +1,190 @@
+<ion-header> <header>
+        <app-header-marketplace *ngIf="configuracao.modo == 'marketplace'" [navCtrl]="navCtrl"></app-header-marketplace>
+        <app-header-comparacao *ngIf="configuracao.modo != 'marketplace'" [navCtrl]="navCtrl"></app-header-comparacao>
+    </header></ion-header>
+<ion-content>
+   
+
+    <!--main-->
+    <main class="bg-gray pedidos">
+
+        <!--breadcrumbie-->
+        <section class="breadcrumbie-content">
+            <div class="">
+                <ul>
+                    <li><a href="">Zukkin</a> |</li>
+                    <li><a href="" class="active">Meus pedidos</a></li>
+                </ul>
+            </div>
+        </section>
+        <!--/breadcrumbie-->
+
+        <div class="bg-white">
+
+            <div class="header">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1>Meus pedidos</h1>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-4">
+                        <p>Filtrar por:</p>
+                    </div>
+
+                    <div class="col-xs-8">
+                        <select name="filtro_status" id="" (change)="executarFiltro(status.value)" #status>
+                            <option value="">Selecione</option>
+                            <option>Aguardando Aprovação</option>
+                            <option>Aguardando Pagamento</option>
+                            <option>Cancelado</option>
+                            <option>Separando Produtos</option>
+                            <option>Finalizado</option>
+                            <option>Em Transporte</option>
+                            <option>Entrega pronta para ser retirada na loja</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="accordionpedidos" *ngIf="pedidos">
+                <div class="row col-xs-12 pedidos-item" *ngIf="pedidos.length == 0">
+                    <p>Nenhum pedido encontrado</p>
+                </div>
+
+                <div *ngFor="let pedido of pedidos">
+                    <div class="row">
+                        <div class="col-xs-12 pedidos-item">
+                            <p>Pedido dia <strong>{{pedido.data_de_criacao | date: 'd'}} de {{pedido.data_de_criacao | date: 'MMMM'}} de {{pedido.data_de_criacao | date: 'yyyy'}}</strong></p>
+                            <strong>Número do pedido: #{{pedido.id}}</strong>
+                            <div class="status">
+                                <div class="status-item">
+                                    Status:
+                                </div>
+                                <div class="status-content">
+                                    <button [class]="corDoStatus(pedido)">{{pedido.status.nome_normalizado}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="panel-heading" (click)="pedido.verDetalhe = !pedido.verDetalhe">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordionsp" href="#" class="btn-detail {{pedido.verDetalhe ? 'arrow-up' : 'arrow-down'}}" >
+                                    Abrir detalhes
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapsespOne" class="panel-collapse" *ngIf="pedido.verDetalhe">
+                            <div class="panel-body">
+                                <div class="info-pedido">
+                                    <div>
+                                        <!--<span class="sprites-logo-card"></span>-->
+                                        <span class="valor">R$ {{ pedido.valor_total | number:'1.2-2'}}</span>
+                                    </div>
+
+                                    <div class="frete">Frete: R$ {{ pedido.frete | number:'1.2-2'}}</div>
+                                    <div class="pagamento">Pagamento: <strong>Cartão de crédito</strong></div>
+                                    <div class="pagamento">Forma de entrega: <strong>{{pedido.entrega_tipo.nome}}</strong></div>
+                                </div>
+
+                                <!--<div class="payment-list">-->
+                                    <!--<ul>-->
+                                        <!--<li><a href=""><span class="sprites-boleto-logo"></span> <span class="text">Imprimir boleto</span></a></li>-->
+                                        <!--<li><a href=""><span class="sprites-recharge"></span> <span class="text">Pedir novamente</span></a></li>-->
+                                        <!--<li><a href=""><span class="sprites-x"></span> <span class="text">Cancelar pedido</span></a></li>-->
+                                    <!--</ul>-->
+                                <!--</div>-->
+
+                                <button class="btn btn-red--comparar detail-more" id="" (click)="pedido.verProdutos = !pedido.verProdutos">
+                                    {{ pedido.verProdutos ? 'Fechar detalhes' : 'Ver mais detalhes' }}
+                                </button>
+                                <div class="iten-detail--content" *ngIf="pedido.verProdutos">
+                                    <h1>Itens do pedido:</h1>
+
+                                    <div class="product-list-cart mCustomScrollbar">
+                                        <div class="content-vertical">
+                                            <div class="content-vertical--wrap" *ngFor="let produto of pedido.produtos">
+                                                <div class="product-list-item">
+                                                    <img src="{{produto.produto.pag_pro_imagem_absolute_url}}" alt="" class="img-responsive">
+                                                </div>
+                                                <div class="product-list-name">
+                                                    <p>{{produto.produto.pag_pro_nome}}</p>
+                                                </div>
+                                                <div class="product-list-select">
+                                                    <span><strong>{{ produto.quantidade }}</strong> Unid</span>
+                                                </div>
+                                                <div class="product-list-prices">
+                                                    <div class="prices">
+                                                        <div class="preco-unitario">
+                                                            R$ {{ produto.valor_unitario | number:'1.2-2'}}
+                                                        </div>
+                                                        <div class="price">
+                                                            R$ {{ produto.valor_unitario * produto.quantidade | number:'1.2-2'}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="line-gray"></div>
+                </div>
+            </div>
+
+            <!--pagination-->
+            <div class="row" *ngIf="pedidos && pedidos.length > 0">
+                <div class="col-xs-12">
+                    <nav aria-label="Page navigation" class="nav-page">
+                        <ul class="pagination">
+                            <li>
+                                <a href="#" aria-label="Previous" *ngIf="paginacao.current > 1"
+                                   (click)="pagina(paginacao.previous)">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li *ngFor="let p of paginacao.pagesInRange">
+                                <a href="#" [ngClass]="{'active': p == paginacao.current}" (click)="pagina(p)">{{p}}</a>
+                            </li>
+                            <li>
+                                <a href="#" aria-label="Next" (click)="pagina(paginacao.pageCount)">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!--/pagination-->
+
+        </div>
+
+        <div class="container-fluid">
+            <section class="row">
+                <div class="col-xs-12">
+                    <div class="wrapper">
+
+                        <!--logo body-->
+                        <div class="content-logo--body">
+                            <img src="assets/images/static/zukkin-logo-mobile-body.png" alt="" >
+                        </div>
+                        <!--/logo-body-->
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <!--/main-->
+
+    <app-footer [navCtrl]="navCtrl"></app-footer>
+</ion-content>
+
+<ion-footer>
+    <app-footer-resumo [navCtrl]="navCtrl"></app-footer-resumo>
+</ion-footer>

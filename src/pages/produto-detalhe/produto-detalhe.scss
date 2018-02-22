@@ -1,0 +1,71 @@
+page-produto-detalhe {
+    .product-info--content {
+        .select-content {
+            margin: 15px 0;
+            width: 100%;
+        }
+    }
+
+    .produto-detalhe-accordion {
+        .panel-collapse {
+            .hide {
+                display: none;
+            }
+
+            .show {
+                display: block;
+            }
+        }
+    }
+
+    #accordionsp, .product-info--content {
+        .product-list-prices {
+            width: 100%;
+
+            .price-comparacao {
+                text-align: left;
+            }
+        }
+
+        .product-title {
+            text-align: center;
+        }
+
+        .cod {
+            text-align: right;
+        }
+
+        .product-list-prices {
+            .preco-comparacao {
+                display: block;
+                text-align: center;
+            }
+        }
+    }
+
+    .produto-detalhe {
+        .selectdiv label {
+            margin-top: 0;
+        }
+    }
+
+    .alert {
+        margin: -15px;
+
+
+        .bg-red-light {
+            height: $space-lg + 20px;
+            padding:$space-sm;
+        }
+
+        p {
+            padding: 0;
+            color: #ffffff;
+            text-align: left;
+            font-size: 10px;
+            line-height: 20px;
+        }
+    }
+}
+
+

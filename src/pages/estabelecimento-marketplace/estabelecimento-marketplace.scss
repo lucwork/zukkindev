@@ -1,0 +1,35 @@
+page-estabelecimento-marketplace {
+    #select-stores {
+        display: block;
+
+        .modal-header {
+            margin: 0 0 30px 0;
+        }
+
+        .modal-body {
+            padding: 0;
+
+            .content-item {
+                .item {
+                    margin: 0;
+                    padding: 15px 3px;
+
+                    .title {
+                        font-size: 14px;
+                    }
+                }
+
+                .sprites-arrow-product-right {
+                    right: auto;
+                    left: 0;
+                }
+
+                .btn-content {
+                    .btn-green--transparent {
+                        border: 1px solid $green;
+                    }
+                }
+            }
+        }
+    }
+}

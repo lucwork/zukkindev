@@ -1,0 +1,43 @@
+.content-product--vitrine .product-list .products-group {
+    background-color: transparent;
+
+    app-produto-box {
+        .products-group--item {
+            width: 164px;
+            min-width: 164px;
+
+            .products-group--img {
+                height: 170px;
+            }
+
+            .products-group--text {
+                h2 {
+                    height: 75px;
+                }
+
+                span.comparacao-ate {
+                    float: none;
+                    text-align: center;
+                    width: auto;
+                    display: inline-table;
+                    vertical-align: bottom;
+                }
+
+                h1 {
+                    width: auto;
+                    float: none;
+                    text-align: center;
+                    display: inline-block;
+                }
+            }
+
+            .products-group--select {
+                .selectdiv {
+                    label {
+                        width: 60px;
+                    }
+                }
+            }
+        }
+    }
+}

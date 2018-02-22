@@ -1,0 +1,65 @@
+<!--
+  Generated template for the UsuarioCadastroPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!--<ion-header>-->
+
+<!--<ion-navbar>-->
+<!--<ion-title>Cadastre-se no ZUKKIN</ion-title>-->
+<!--</ion-navbar>-->
+
+<!--</ion-header>-->
+
+
+<ion-content class="main">
+    <div class="modal-header">
+        <a href="#" class="close closeModal" data-dismiss="modal" aria-hidden="true" (click)="voltar()">×</a>
+        <h4 class="modal-title" id="">Meus endereços</h4>
+    </div>
+
+    <div class="row" *ngIf="this.alerta">
+        <div class="col-xs-12 alert bg-red-light">
+            Não encontramos nenhum preço para o endereço ativo.
+            Por favor, troque o seu endereço ou refaça a seleção de estabelecimentos
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-6">
+            <button class="btn gray-button" (click)="novo()">Novo endereço</button>
+        </div>
+        <div class="col-xs-6" *ngIf="this.alerta">
+            <button class="btn gray-button" (click)="estabelecimentosSelecionar()">Selecionar Lojas</button>
+        </div>
+    </div>
+
+    <!--endereco ativo-->
+    <div class="endereco-wrapper bg-gray endereco-ativo" *ngIf="enderecoAtivo">
+        <div class="endereco-info">
+            <div class="row">
+                <div class="col-xs-8"><h5>{{ enderecoAtivo.pag_usu_end_nome }}</h5></div>
+                <div class="col-xs-4"><span class="flag-ativo">Ativo</span></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">{{ enderecoAtivo.label }}</div>
+            </div>
+        </div>
+    </div>
+    <!--/endereço ativo-->
+
+    <!--outros endereços cadastrados-->
+    <div class="row endereco-wrapper" *ngFor="let endereco of enderecos, let i = index">
+        <div class="col-xs-12 endereco-info">
+            <h5>{{ endereco.pag_usu_end_nome }}</h5>
+            {{ endereco.label }}
+        </div>
+        <div class="col-xs-12 endereco-action">
+            <a href="#" class="btn btn-primary" (click)="ativar(endereco)">Ativar</a>
+            <a href="#" class="btn btn-danger" (click)="excluir(endereco)">Excluir</a>
+        </div>
+    </div>
+    <!--/outros endereços cadastrados-->
+
+</ion-content>

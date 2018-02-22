@@ -1,0 +1,109 @@
+app-footer-resumo-comparacao {
+    .btn-trocar {
+        //width: 16%;
+    }
+
+    .col-xs-1 {
+        position: relative;
+
+        &.arrow-left,
+        &.arrow-right {
+            padding-right: 0;
+
+            a {
+                position: absolute;
+                top: 20%;
+            }
+        }
+    }
+
+    .item-store {
+        .resumo-footer-estabelecimento-bandeira {
+            margin-top: 0px;
+            padding: 0;
+
+            .resumo-footer-posicao, img {
+                float: left;
+                padding-top: 5px;
+            }
+            .resumo-footer-posicao {
+                font-size: 18px;
+                margin-top: 10px;
+            }
+            img {
+                height: 45px;
+                margin-right: 3px;
+            }
+            .resumo-footer-label {
+                padding-top: 17px;
+                font-size: 13px;
+
+                span {
+                    display: block;
+                }
+                display: inline-block;
+
+                .resumo-footer-local {
+                    color: #6e6e6e;
+                }
+            }
+        }
+
+        font-size: 15px;
+    }
+
+    ion-slides {
+        margin-top: -10px;
+        padding: 0 5px;
+
+        span {
+            padding: 0 5px;
+        }
+
+        .resumo-footer-info {
+            padding: 0px;
+            margin-top: 5px;
+            .valor-total {
+                font-weight: bold;
+                color: $blue-dark;
+            }
+
+            .produtos {
+                color: $gray-dark;
+            }
+        }
+    }
+
+    .btn-transparent {
+        padding: 10px 15px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 992px) {
+    .xs-hidden {
+        display: none;
+    }
+}
+@media (min-width: 992px) {
+    .col-md-4 {
+        width: 33.33333333%;
+    }
+    .col-md-1 {
+        width: 8.33333333%;
+    }
+    app-footer-resumo-comparacao {
+        .item-store {
+            .resumo-footer-estabelecimento-bandeira {
+                img {
+                    height: 65px;
+                }
+            }
+        }
+    }
+}
+
+.resumo-footer-label {
+    margin-top: 15px;
+    font-size: 20px;
+}

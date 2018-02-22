@@ -1,0 +1,52 @@
+//tablet
+@media(min-width:768px){
+  .modal-dialog {
+    margin: $space-md auto;
+  }
+
+  .form-inline .form-group {
+    margin-bottom: $space-sm;
+  }
+
+  .form-inline .form-control {
+    display: block;
+    width: 100%;
+  }
+
+  #login .modal-content .modal-body .form-control-feedback {
+    margin-right: 0;
+    margin-top: $space-md + $space-xs;
+  }
+
+  #select-stores .modal-body .content-item .item {
+    margin: 0 auto;
+  }
+
+  #select-stores .modal-body .content-item .sprites-arrow-product-left {
+    left: 53%;
+  }
+
+  #load-market .modal-footer .loader{
+    width: 40px;
+    margin-right: $space-sm;
+  }
+
+  .produto .product-info--content .sprites-arrow-select-fake, .comparativo .product-info--content .sprites-arrow-select-fake{
+    top: 0;
+    right: 25px;
+  }
+
+  .catalogo .content-product--vitrine .product-list .products-group .products-group--item, .comparativo .content-product--vitrine .product-list .products-group .products-group--item {
+    width: 50%;
+  }
+}
+
+
+@media(min-width:1024px){
+  .footer-fixe {
+    .line-address--footer {
+      padding: 0 !important;
+    }
+  }
+}
+//desktop

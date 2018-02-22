@@ -1,0 +1,61 @@
+<div class="wrapper">
+    <!--how-works-->
+
+    <div class="how-works">
+        <div class="container-fluid">
+            <h1>Como funciona o Zukkin?</h1>
+        </div>
+
+        <ul class="nav nav-tabs">
+            <li [ngClass]="{'active': tab === 'tab1'}">
+                <a (click)="alterarTab('tab1')"><span class="sprites-money-ico"></span></a>
+            </li>
+            <li [ngClass]="{'active': tab === 'tab2'}">
+                <a (click)="alterarTab('tab2')"><span class="sprites-pig-ico"></span></a>
+            </li>
+            <li [ngClass]="{'active': tab === 'tab3'}">
+                <a (click)="alterarTab('tab3')"><span class="sprites-smartstore-ico"></span></a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active" *ngIf="tab === 'tab1'">
+                <h1>Procure pelas melhores ofertas</h1>
+                <p>
+                    Encontrar boas promoções pode ser uma
+                    tarefa difícil.
+                </p>
+                <p>
+                    É aí que entramos, <strong>digitamos os preços e
+                    fazemos a matemática para você.</strong>
+                </p>
+                <p>
+                    Encontre aqueles que economizam mais.
+                </p>
+            </div>
+
+            <div id="menu1" class="tab-pane fade in active" *ngIf="tab === 'tab2'">
+                <h1>Crie as suas listas</h1>
+                <p>
+                    Ao se cadastrar no Zukkin, você poderá criar ilimitadas listas de compras, e a gente
+                    informará automaticamente quais Estabelecimentos têm as melhores ofertas.
+                </p>
+            </div>
+
+            <div id="menu2" class="tab-pane fade in active" *ngIf="tab === 'tab3'">
+                <h1>Economize!</h1>
+                <p>
+                    Após encontrar o melhor local para realizar a sua compra, você pode ir até o local e
+                    aproveitar as ofertas encontradas.
+                </p>
+                <p>
+                    Se estiver no modo "Venda online" do site, basta realizar o pedido e esperar os produtos no
+                    conforto da sua casa!
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <!--/how-works-->
+
+</div>

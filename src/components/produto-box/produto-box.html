@@ -1,0 +1,37 @@
+<div class="products-group--item">
+    <div class="products-group--img">
+        <img src="{{ produto.pag_pro_imagem_absolute_url }}" alt="{{ produto.pag_pro_nome }}" (click)="paginaProduto(produto)">
+    </div>
+
+    <div class="products-group--text">
+        <h3>
+            <div *ngIf="produto.pag_marca && produto.pag_marca.pag_mar_nome">{{ produto.pag_marca.pag_mar_nome }}</div>
+            <div *ngIf="!produto.pag_marca || !produto.pag_marca.pag_mar_nome">&nbsp;</div>
+        </h3>
+        <h2>{{ produto.pag_pro_nome }}</h2>
+        <!--marketplace-->
+        <div *ngIf="configuracao.modo === 'marketplace'">
+            <div *ngIf="produto.precos.preco_promocao">
+                <h4>R$ {{ produto.precos.preco_normal | number:'1.2-2' }}</h4>
+                <h1>R$ {{ produto.precos.preco_promocao | number:'1.2-2' }}</h1>
+            </div>
+            <div *ngIf="!produto.precos.preco_promocao">
+                <h1>R$ {{ produto.precos.preco_normal | number:'1.2-2' }}</h1>
+            </div>
+        </div>
+        <!--/marketplace-->
+        <!--comparacao-->
+        <div *ngIf="configuracao.modo !== 'marketplace'">
+            <h4>R$ {{ produto.precos.preco_minimo | number:'1.2-2' }}</h4>
+            <span class="comparacao-ate"> até </span>
+            <h1>R$ {{ produto.precos.preco_maximo | number:'1.2-2' }}</h1>
+        </div>
+        <!--/comparacao-->
+    </div>
+
+    <div class="products-group--select">
+        <app-produto-select-quantidade [produto]="produto" [navCtrl]="navCtrl"></app-produto-select-quantidade>
+    </div>
+
+    <app-produto-btn-adicionar-remover [produto]="produto" [navCtrl]="navCtrl"></app-produto-btn-adicionar-remover>
+</div>

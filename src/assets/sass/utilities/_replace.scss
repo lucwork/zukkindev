@@ -1,0 +1,483 @@
+//bullets carrousel
+.content-pills {
+
+  ol.carousel-indicators {
+    background-color: white;
+    opacity: 0.8;
+    padding: $space-sm $space-xs;
+    width: $space-xl +25px;
+    position: absolute;
+    bottom: -10px;
+    left: auto;
+    right: 0;
+
+
+    li{
+      background-color: $red;
+      opacity: 0.5;
+      &.active {
+        background-color: $red;
+        opacity: 1;
+      }
+    }
+  }
+
+}
+
+//scroll
+.mCSB_horizontal.mCSB_inside>.mCSB_container {
+  display: flex !important;
+  min-width: 700px !important;
+  -ms-display: inline-block !important;
+}
+
+//vitrine
+.product-list {
+  .mCustomScrollBox  {
+    background-color: $gray;
+  }
+
+  .mCSB_scrollTools {
+    &.mCSB_scrollTools_horizontal {
+      .mCSB_dragger {
+        .mCSB_dragger_bar {
+          background-color: $lead;
+          margin-top: 7px;
+          height: 5px;
+        }
+      }
+    }
+  }
+
+
+  .mCSB_scrollTools {
+    &.mCSB_scrollTools_horizontal {
+      .mCSB_draggerRail {
+        height: 5px;
+        background-color: $lead-light;
+        opacity: 0.5;
+      }
+    }
+  }
+}
+
+//navtabs
+.nav.nav-tabs {
+  margin-left: $space-sm + 10px;
+  border: 0;
+
+  li {
+    background-color: transparent;
+
+    &.active {
+      a {
+        @extend %tabs-works ;
+      }
+
+    }
+  }
+}
+
+//tabs
+.tab-content {
+  color:$blue-dark;
+  font-size: $space-sm ;
+  background-color: $white;
+  padding: $space-sm;
+  text-align: justify;
+
+  h1 {
+    font-size: $space-sm + 3px;
+    padding: $space-sm 0;
+    margin: 0;
+  }
+}
+
+//sprite icon
+.sprites-arrow-select-fake {
+  position: relative;
+  right:$space-sm +10px;
+}
+
+//pagination
+.nav-page {
+  margin: 0 auto;
+  text-align: center;
+
+  li {
+    a {
+      background: transparent;
+      border: 0;
+      color: $lead-ultra-light;
+      font-size: $space-sm + $space-xs;
+
+      &.active {
+        background-color: $red-live;
+        font-size: $space-md;
+        border-radius: 5px;
+        width: $space-md + 10px;
+        height: $space-md + 10px;
+        color:$white;
+        padding: 0;
+      }
+    }
+  }
+}
+
+//fake radio e checkbox
+.radio-button,
+.checkbox {
+  position: relative;
+  margin: 20px 0;
+  display: block;
+}
+.checkbox { display: block; }
+
+.radio-button input,
+.checkbox input {
+  position: absolute;
+  margin: 5px;
+  padding: 0;
+  /* for mobile accessibility (iOS Label Bug) */
+  visibility: hidden;
+}
+.radio-button .label-visible,
+.checkbox .label-visible {
+  margin-left: 2em;
+  margin-bottom: 0;
+}
+
+
+.fake-radiobutton,
+.fake-checkbox{
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border: 1px solid slategray;
+  background-color: white;
+}
+.fake-radiobutton:after,
+.fake-checkbox:after {
+  content: "";
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background: $blue-ultra-light;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.fake-radiobutton { border-radius: 50%; }
+.fake-radiobutton:after { border-radius: 50%; }
+
+input[type="radio"]:checked + span .fake-radiobutton:after,
+input[type="checkbox"]:checked + span .fake-checkbox:after { display: block; }
+
+//animação do loader modal
+.loader {
+    border: 5px solid #f3f3f3; /* Light grey */
+    border-top: 5px solid $red-light; /* Blue */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+//comparativo replace
+.comparativo {
+  header {
+    background-color: $blue-ocean;
+
+    .item {
+      width: 25%;
+      .compare-item {
+        background-color: $blue-ocean-dark;
+        height: $space-lg + 10px;
+        margin-top: -16px;
+        color:$white;
+        padding: $space-sm;
+      }
+    }
+
+    #pm_menu {
+      background: $blue-ocean;
+    }
+
+    .btn-red--comparar {
+      background: $blue-ocean-dark;
+    }
+  }
+
+  .content-pills ol.carousel-indicators li {
+    background: $blue-ocean;
+    &.active {
+      background: $blue-ocean-dark;
+    }
+  }
+
+  .red-button.add-active {
+    background-color: $blue-ocean-ultraDark;
+  }
+
+  .content-product--vitrine .product-list .products-group .products-group--item .products-group--text h4,
+  .content-product--vitrine .product-list .products-group .products-group--item .products-group--text h1 {
+    font-size: $space-sm + $space-xs;
+  }
+
+  .content-product--vitrine .product-list .products-group .products-group--item .products-group--text h1 {
+    width: 60%;
+    float: right;
+    text-align: left;
+  }
+
+  .content-product--vitrine .product-list .products-group .products-group--item .products-group--text span {
+    width: 40%;
+    float: left;
+    text-align: right;
+    height: 32px;
+    padding-top: 7px;
+  }
+
+  .you-are {
+    height: $space-lg + 20px;
+    padding: $space-sm;
+
+    .you-are--text {
+      display: flex;
+    }
+
+    .item-store {
+      width: 100%;
+    }
+
+    .itens {
+      color: $blue;
+
+      span {
+        font-weight: bold;
+      }
+    }
+  }
+
+  .breadcrumbie-content {
+    background-color: $blue-ocean-ultra;
+
+    ul {
+      li {
+        color:$blue-ocean-light;
+        a {
+          color:$blue-ocean-light;
+        }
+      }
+    }
+  }
+
+  .grafic{
+    background-color: $white;
+    margin: -15px;
+    padding: $space-sm;
+
+    h1 {
+      color: $lead;
+      font-weight: bold;
+      font-size: $space-md - $space-xs;
+    }
+  }
+
+  .product-info--content {
+    .prices {
+      display: flex;
+
+      .price {
+        padding: 0 $space-xs;
+      }
+    }
+  }
+
+  .product-info--content .content-description {
+    border-bottom: 0;
+  }
+
+  .alert {
+    margin: -15px;
+
+
+    .bg-red-light {
+      height: $space-lg + 20px;
+        padding:$space-sm;
+    }
+
+    p {
+      padding: 0;
+      color: #ffffff;
+      text-align: left;
+      font-size: 10px;
+      line-height: 20px;
+    }
+  }
+
+  .achei-caro--content {
+    border-bottom: 0;
+  }
+
+  .outros-supermercados--content {
+    margin-top: $space-md;
+    border-bottom: 0;
+  }
+
+  #accordionsp, #accordioninfo {
+    margin: -15px;
+  }
+
+  #accordionsp {
+    @extend %panel-head;
+
+    .panel-body {
+      margin: $space-sm -15px;
+
+      .title{
+        font-weight: bold;
+      }
+    }
+
+    .off-content {
+      background-color: #1a2e35;
+      padding: 2px;
+      text-align: center;
+      color: $white;
+      width: 80px;
+    }
+  }
+
+  .update {
+    color: $lead;
+
+    span {
+      font-weight: bold;
+    }
+  }
+
+  .nutricional-description--content {
+    border-bottom: 0;
+  }
+
+  #accordioninfo {
+    .panel-heading {
+
+      h4 {
+        border-bottom: 1px solid $gray-light;
+
+        &:after {
+          @extend %arrow-select;
+          background: url('../images/static/png-sprites/arrow-select-fake.png') no-repeat !important;
+          top: -27px;
+        }
+
+        &.arrow-up {
+          &:after {
+            @extend %arrow-up;
+            background: url('../images/static/png-sprites/arrow-select-fake-up.png') no-repeat !important;
+            top: -27px;
+          }
+        }
+      }
+
+      a {
+        &:first-child{
+            border-top: 1px solid $gray-light;
+        }
+
+      }
+    }
+  }
+
+
+  &.comparacao-page {
+    .header-left {
+      margin-top: $space-lg;
+
+      h1{
+        color:#00c853;
+        font-size: $space-lg;
+        margin: 10px 0;
+      }
+
+      h2 {
+        color:$lead;
+        font-weight: bold;
+        margin: 0;
+        font-size: $space-sm + 10px;
+      }
+
+      h3 {
+        margin: 0;
+        font-size: $space-sm;
+        font-weight: bold;
+      }
+    }
+
+    .header-right {
+       .store-logo {
+        margin: 0;
+       }
+
+       .flag {
+         margin: $space-sm 0;
+       }
+
+       .itens {
+         margin: 0;
+       }
+
+       .itens-valor {
+         .valor {
+           strong{
+            font-weight: normal;
+            font-size: $space-sm;
+           }
+
+         }
+       }
+
+       .btn-transparent {
+         color: #1268b3;
+         border: 1px solid #1268b3;
+         margin-top: $space-sm;
+         font-weight: normal;
+       }
+    }
+
+    .body{
+      margin-bottom:$space-sm;
+      .change-store {
+        .btn-transparent {
+          color: #1268b3;
+          border: 1px solid #1268b3;
+          margin-top: $space-sm;
+          font-weight: normal;
+        }
+      }
+
+      .more {
+        background-color: #0089e9 !important;
+      }
+
+      .minus {
+        background-color: #6fcbfb !important;
+      }
+
+    }
+
+  }
+}
